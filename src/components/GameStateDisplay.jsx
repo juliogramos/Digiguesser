@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { GAMESTATE } from "../utils/constants";
 
 function GameStateDisplay({ state }) {
@@ -8,16 +8,22 @@ function GameStateDisplay({ state }) {
 
     case GAMESTATE.WIN:
       return (
-        <>
-          <Typography>You won!</Typography>
-        </>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography color="success.main" variant="h4">
+            You Won!
+          </Typography>
+          <Typography>Next round in </Typography>
+        </Box>
       );
 
     case GAMESTATE.LOSS:
       return (
-        <>
-          <Typography>You lost!</Typography>
-        </>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography color="fail.main" variant="h4">
+            You Lost!
+          </Typography>
+          <Typography>Next round in </Typography>
+        </Box>
       );
 
     default:

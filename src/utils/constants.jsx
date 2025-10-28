@@ -24,3 +24,8 @@ export const GAMESTATE = Object.freeze({
   WIN: "win",
   LOSS: "loss",
 });
+
+export const DIGIMONIMAGESIZE = Object.freeze({
+  WIDTH: 320,
+  HEIGHT: 320,
+});

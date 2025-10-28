@@ -2,15 +2,15 @@ import { useAsync } from "./useAsync";
 import client from "../utils/client";
 import { MAXDIGIMON, DEFAULTDIGIMONSTATUS } from "../utils/constants";
 import randomRange from "../utils/randomRange";
-import * as React from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function useDigimon() {
   const { data, error, run, isLoading, isError, isSuccess } = useAsync();
-  const [digimon, setDigimon] = React.useState(null);
-  const [status, setStatus] = React.useState(DEFAULTDIGIMONSTATUS);
+  const [digimon, setDigimon] = useState(null);
+  const [status, setStatus] = useState(DEFAULTDIGIMONSTATUS);
 
   // Update status
-  React.useEffect(() => {
+  useEffect(() => {
     setStatus({
       standby: digimon === null && !isLoading && !isError && !isSuccess,
       loading: isLoading,
@@ -20,7 +20,7 @@ function useDigimon() {
   }, [digimon, isError, isLoading, isSuccess]);
 
   // Assemble Digimon object when data comes
-  React.useEffect(() => {
+  useEffect(() => {
     if (!data) {
       setDigimon(null);
       return;
@@ -45,7 +45,7 @@ function useDigimon() {
     setDigimon(newDigimonObject);
   }, [data, setDigimon]);
 
-  const getRandomDigimon = React.useCallback(
+  const getRandomDigimon = useCallback(
     (differentId = null) => {
       let id = differentId;
       while (id === differentId) {
@@ -56,7 +56,7 @@ function useDigimon() {
     [run]
   );
 
-  const getDigimonById = React.useCallback(
+  const getDigimonById = useCallback(
     (id) => {
       if (id < 1 || id > MAXDIGIMON)
         throw Error(`Digimon ID out of range - Received ${id}`);
@@ -65,6 +65,11 @@ function useDigimon() {
     [run]
   );
 
+  const clearDigimon = useCallback(() => {
+    setDigimon(null);
+    setStatus(DEFAULTDIGIMONSTATUS);
+  }, []);
+
   return {
     digimon,
     error,
@@ -72,6 +77,7 @@ function useDigimon() {
     getRandomDigimon,
     getDigimonById,
     setDigimon,
+    clearDigimon,
   };
 }
 

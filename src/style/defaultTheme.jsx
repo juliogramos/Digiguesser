@@ -1,0 +1,94 @@
+import { createTheme } from "@mui/material";
+import bgImg from "../assets/bg.png";
+
+const defaultSpacing = 8;
+
+let defaultTheme = createTheme({
+  spacing: defaultSpacing,
+  palette: {
+    primary: {
+      main: "#1251d0",
+    },
+    secondary: {
+      main: "#2e74c9",
+    },
+    success: {
+      main: "#009900",
+    },
+    fail: {
+      main: "#ff0000",
+    },
+    background: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    body1: {
+      fontSize: "1.25rem",
+    },
+    h1: {
+      fontSize: "3rem",
+      letterSpacing: "0.50rem",
+      fontWeight: 600,
+      textAlign: "center",
+    },
+    h2: {
+      fontSize: "2.5rem",
+      letterSpacing: "0.30rem",
+      fontWeight: 600,
+      textAlign: "center",
+    },
+    h3: {
+      fontSize: "2.25rem",
+      letterSpacing: "0.10rem",
+      fontWeight: 600,
+      textAlign: "center",
+    },
+    h4: {
+      fontSize: "2rem",
+      fontWeight: 600,
+      textAlign: "center",
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          height: "100%",
+        },
+        body: {
+          height: "100%",
+          background: `#d3dbff url(${bgImg}) repeat left top`,
+          backgroundSize: `${2640 / 1.375}px auto`,
+          "@keyframes bgAnim": {
+            "0%": {
+              backgroundPosition: "left 0 top 0",
+            },
+            "100%": {
+              backgroundPosition: `left ${2640 / 1.375}px top ${992 / 1.375}px`,
+            },
+          },
+          animation: "bgAnim 40s infinite linear",
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2 * defaultSpacing,
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
+          p: 1 * defaultSpacing,
+          margin: "0 auto",
+        },
+      },
+    },
+  },
+});
+
+export default defaultTheme;
