@@ -8,5 +8,5 @@ Queries from [DAPI](https://digi-api.com/).
 
 ## Todo
 
-- [ ] Put Loader in its own file
+- [x] Put Loader in its own file
 - [ ] Style

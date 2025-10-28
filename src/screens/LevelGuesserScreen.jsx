@@ -5,6 +5,7 @@ import { Container, Box, Card, Button, Typography } from "@mui/material";
 import { GAMESTATE, LEVELS } from "../utils/constants";
 import { GameStateDisplay } from "../components/GameStateDisplay";
 import { DigimonImage } from "../components/DigimonImage";
+import { TimedLoader } from "../components/TimedLoader";
 
 function LevelGuesserScreen() {
   const { digimon, error, status, getRandomDigimon } = useDigimon();
@@ -64,7 +65,10 @@ function LevelGuesserScreen() {
           )}
         </Card>
       </Box>
-      <GameStateDisplay state={gameState} resetCallback={newGame} />
+      <GameStateDisplay state={gameState} />
+      {gameState === GAMESTATE.WIN || gameState === GAMESTATE.LOSS ? (
+        <TimedLoader callback={newGame} />
+      ) : null}
       <Box
         sx={{
           display: "flex",
