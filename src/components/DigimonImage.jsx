@@ -23,8 +23,14 @@ function DigimonImage({ src }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        maxWidth: DIGIMONIMAGESIZE.WIDTH,
-        maxHeight: DIGIMONIMAGESIZE.HEIGHT,
+        maxWidth: {
+          xs: DIGIMONIMAGESIZE.SMALLWIDTH,
+          sm: DIGIMONIMAGESIZE.WIDTH,
+        },
+        maxHeight: {
+          xs: DIGIMONIMAGESIZE.SMALLHEIGHT,
+          sm: DIGIMONIMAGESIZE.HEIGHT,
+        },
         width: "100%",
         height: "100%",
       }}

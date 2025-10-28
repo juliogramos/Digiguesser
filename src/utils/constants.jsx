@@ -28,4 +28,6 @@ export const GAMESTATE = Object.freeze({
 export const DIGIMONIMAGESIZE = Object.freeze({
   WIDTH: 320,
   HEIGHT: 320,
+  SMALLWIDTH: 250,
+  SMALLHEIGHT: 250,
 });

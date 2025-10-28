@@ -7,6 +7,7 @@ import { GameStateDisplay } from "../components/GameStateDisplay";
 import { DigimonImage } from "../components/DigimonImage";
 import { TimedLoader } from "../components/TimedLoader";
 import { TitleCard } from "../components/TitleCard";
+import { LevelButton } from "../components/LevelButton";
 
 function LevelGuesserScreen() {
   const { digimon, error, status, getRandomDigimon, clearDigimon } =
@@ -72,42 +73,48 @@ function LevelGuesserScreen() {
             gap: 2,
           }}
         >
-          <Button
+          <LevelButton
+            level={LEVELS.BABY}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.BABY)}
+            onClick={levelGuesserLogic}
           >
             Baby
-          </Button>
-          <Button
+          </LevelButton>
+          <LevelButton
+            level={LEVELS.CHILD}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.CHILD)}
+            onClick={levelGuesserLogic}
           >
             Child
-          </Button>
-          <Button
+          </LevelButton>
+          <LevelButton
+            level={LEVELS.ADULT}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.ADULT)}
+            onClick={levelGuesserLogic}
           >
             Adult
-          </Button>
-          <Button
+          </LevelButton>
+          <LevelButton
+            level={LEVELS.PERFECT}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.PERFECT)}
+            onClick={levelGuesserLogic}
           >
             Perfect
-          </Button>
-          <Button
+          </LevelButton>
+          <LevelButton
+            level={LEVELS.ULTIMATE}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.ULTIMATE)}
+            onClick={levelGuesserLogic}
           >
             Ultimate
-          </Button>
-          <Button
+          </LevelButton>
+          <LevelButton
+            level={LEVELS.OTHER}
             disabled={gameState !== GAMESTATE.STANDBY}
-            onClick={() => levelGuesserLogic(LEVELS.OTHER)}
+            onClick={levelGuesserLogic}
           >
             Other
-          </Button>
+          </LevelButton>
         </Box>
       </Card>
     </Container>
