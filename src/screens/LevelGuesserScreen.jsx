@@ -61,7 +61,7 @@ function LevelGuesserScreen() {
         >
           <GameStateDisplay state={gameState} />
           {gameState === GAMESTATE.WIN || gameState === GAMESTATE.LOSS ? (
-            <TimedLoader callback={newGame} duration={10} />
+            <TimedLoader callback={newGame} duration={100} />
           ) : null}
         </Box>
         <Box

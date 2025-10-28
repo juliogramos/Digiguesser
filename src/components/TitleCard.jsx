@@ -12,21 +12,15 @@ function TitleCard({ subTitle = null }) {
         justifyContent: "center",
         alignItems: "center",
         gap: 2,
-        backgroundColor: "background.main",
         p: 1,
         borderTop: "1px solid",
         borderBottom: "1px solid",
         borderColor: "primary.main",
         width: "100%",
+        backgroundColor: theme.palette.boxBackground.main,
       }}
     >
-      <Typography
-        variant="h1"
-        color="primary.main"
-        sx={{
-          fontSize: { xs: "2rem", sm: theme.typography.h1.fontSize },
-        }}
-      >
+      <Typography variant="h1" color="primary.main">
         Digiguesser
       </Typography>
       {subTitle ? (
@@ -40,14 +34,7 @@ function TitleCard({ subTitle = null }) {
           }}
         >
           <img src={arrows} height={20} />
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: { xs: "1.5rem", sm: theme.typography.h2.fontSize },
-            }}
-          >
-            {subTitle}
-          </Typography>
+          <Typography variant="h2">{subTitle}</Typography>
         </Box>
       ) : null}
     </Box>

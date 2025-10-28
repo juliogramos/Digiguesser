@@ -16,9 +16,12 @@ let defaultTheme = createTheme({
       main: "#009900",
     },
     fail: {
-      main: "#ff0000",
+      main: "#990000",
     },
-    background: {
+    bodyBackground: {
+      main: "#d3dbff",
+    },
+    boxBackground: {
       main: "#fff",
     },
   },
@@ -51,6 +54,42 @@ let defaultTheme = createTheme({
       textAlign: "center",
     },
   },
+});
+
+// Components and Breakpoints for text
+defaultTheme = createTheme(defaultTheme, {
+  typography: {
+    body1: {
+      [defaultTheme.breakpoints.down("sm")]: {
+        fontSize: "1rem",
+      },
+    },
+
+    h1: {
+      [defaultTheme.breakpoints.down("sm")]: {
+        fontSize: "2rem",
+      },
+    },
+
+    h2: {
+      [defaultTheme.breakpoints.down("sm")]: {
+        fontSize: "1.75rem",
+      },
+    },
+
+    h3: {
+      [defaultTheme.breakpoints.down("sm")]: {
+        fontSize: "1.5rem",
+      },
+    },
+
+    h4: {
+      [defaultTheme.breakpoints.down("sm")]: {
+        fontSize: "1.25rem",
+      },
+    },
+  },
+
   components: {
     MuiCssBaseline: {
       styleOverrides: {
@@ -59,7 +98,7 @@ let defaultTheme = createTheme({
         },
         body: {
           height: "100%",
-          background: `#d3dbff url(${bgImg}) repeat left top`,
+          background: `${defaultTheme.palette.bodyBackground.main} url(${bgImg}) repeat left top`,
           backgroundSize: `${2640 / 1.375}px auto`,
           "@keyframes bgAnim": {
             "0%": {
@@ -79,11 +118,11 @@ let defaultTheme = createTheme({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: 2 * defaultSpacing,
+          gap: defaultTheme.spacing(2),
           justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
-          p: 1 * defaultSpacing,
+          p: defaultTheme.spacing(1),
           margin: "0 auto",
         },
       },
