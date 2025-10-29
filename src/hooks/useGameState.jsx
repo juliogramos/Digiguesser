@@ -4,11 +4,7 @@ import { useCallback, useState } from "react";
 function useGameState() {
   const [gameState, setGameState] = useState(GAMESTATE.STANDBY);
 
-  const setEvaluating = useCallback(() => {
-    setGameState(GAMESTATE.EVALUATING);
-  }, []);
-
-  const setWinner = useCallback((isWinner) => {
+  const setWinner = useCallback((isWinner, winnerValue, userValue) => {
     isWinner ? setGameState(GAMESTATE.WIN) : setGameState(GAMESTATE.LOSS);
   }, []);
 
@@ -17,7 +13,7 @@ function useGameState() {
     resetCallback();
   }, []);
 
-  return { gameState, setEvaluating, setWinner, resetGameState };
+  return { gameState, setWinner, resetGameState };
 }
 
 export { useGameState };

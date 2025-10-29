@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import arrows from "../assets/img_arrow_dot.svg";
 
-function TitleCard({ subTitle = null }) {
+function TitleCard({ subTitle = null, ...props }) {
   const theme = useTheme();
 
   return (
@@ -16,8 +16,9 @@ function TitleCard({ subTitle = null }) {
         borderTop: "1px solid",
         borderBottom: "1px solid",
         borderColor: "primary.main",
-        width: "100%",
+        maxWidth: "100%",
         backgroundColor: theme.palette.boxBackground.main,
+        ...props,
       }}
     >
       <Typography variant="h1" color="primary.main">

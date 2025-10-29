@@ -1,84 +1,34 @@
-import { useAsync } from "./useAsync";
-import client from "../utils/client";
-import { MAXDIGIMON, DEFAULTDIGIMONSTATUS } from "../utils/constants";
-import randomRange from "../utils/randomRange";
-import { useState, useEffect, useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchDigimon } from "../utils/fetchDigimon";
 
-function useDigimon() {
-  const { data, error, run, isLoading, isError, isSuccess } = useAsync();
-  const [digimon, setDigimon] = useState(null);
-  const [status, setStatus] = useState(DEFAULTDIGIMONSTATUS);
-
-  // Update status
-  useEffect(() => {
-    setStatus({
-      standby: digimon === null && !isLoading && !isError && !isSuccess,
-      loading: isLoading,
-      error: isError,
-      success: isSuccess,
-    });
-  }, [digimon, isError, isLoading, isSuccess]);
-
-  // Assemble Digimon object when data comes
-  useEffect(() => {
-    if (!data) {
-      setDigimon(null);
-      return;
-    }
-
-    let levelList = [];
-    data.levels.map((levelObj) => {
-      levelList.push(levelObj.level);
-    });
-
-    const newDigimonObject = {
-      id: data.id,
-      name: data.name,
-      image: data.images[0] ?? null,
-      levels: levelList,
-      prevos: data.priorEvolutions ?? [],
-      evos: data.nextEvolutions ?? [],
-    };
-
-    console.log("New Digimon: ", newDigimonObject);
-
-    setDigimon(newDigimonObject);
-  }, [data, setDigimon]);
-
-  const getRandomDigimon = useCallback(
-    (differentId = null) => {
-      let id = differentId;
-      while (id === differentId) {
-        id = randomRange(1, MAXDIGIMON);
-      }
-      run(client({ id }));
-    },
-    [run]
-  );
-
-  const getDigimonById = useCallback(
-    (id) => {
-      if (id < 1 || id > MAXDIGIMON)
-        throw Error(`Digimon ID out of range - Received ${id}`);
-      run(client({ id }));
-    },
-    [run]
-  );
-
-  const clearDigimon = useCallback(() => {
-    setDigimon(null);
-    setStatus(DEFAULTDIGIMONSTATUS);
-  }, []);
+function assembleDigimon(data) {
+  let levelList = [];
+  data.levels.map((levelObj) => {
+    levelList.push(levelObj.level);
+  });
 
   return {
-    digimon,
-    error,
-    status,
-    getRandomDigimon,
-    getDigimonById,
-    setDigimon,
-    clearDigimon,
+    id: data.id,
+    name: data.name,
+    image: data.images[0] ?? null,
+    levels: levelList,
+    prevos: data.priorEvolutions ?? [],
+    evos: data.nextEvolutions ?? [],
   };
+}
+
+function useDigimon(digimonId) {
+  const { data, error, isError, isLoading } = useQuery({
+    queryKey: ["digimon", digimonId],
+    queryFn: async () => {
+      const data = await fetchDigimon(digimonId);
+      return data;
+    },
+    enabled: !!digimonId,
+  });
+
+  const digimon = data ? assembleDigimon(data) : null;
+  return { digimon, error, isError, isLoading };
 }
 
 export { useDigimon };

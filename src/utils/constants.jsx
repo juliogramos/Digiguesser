@@ -10,12 +10,21 @@ export const DEFAULTDIGIMONSTATUS = Object.freeze({
 });
 
 export const LEVELS = Object.freeze({
-  BABY: ["Baby I", "Baby II"],
-  CHILD: ["Child"],
-  ADULT: ["Adult"],
-  PERFECT: ["Perfect"],
-  ULTIMATE: ["Ultimate"],
-  OTHER: ["Armor", "Unknown", "Hybrid"],
+  BABY: "Baby",
+  CHILD: "Child",
+  ADULT: "Adult",
+  PERFECT: "Perfect",
+  ULTIMATE: "Ultimate",
+  OTHER: "Other",
+});
+
+export const LEVELVALUES = Object.freeze({
+  [LEVELS.BABY]: ["Baby I", "Baby II"],
+  [LEVELS.CHILD]: ["Child"],
+  [LEVELS.ADULT]: ["Adult"],
+  [LEVELS.PERFECT]: ["Perfect"],
+  [LEVELS.ULTIMATE]: ["Ultimate"],
+  [LEVELS.OTHER]: ["Armor", "Unknown", "Hybrid"],
 });
 
 export const GAMESTATE = Object.freeze({
@@ -30,4 +39,14 @@ export const DIGIMONIMAGESIZE = Object.freeze({
   HEIGHT: 320,
   SMALLWIDTH: 250,
   SMALLHEIGHT: 250,
+});
+
+export const BUTTONSTATUS = Object.freeze({
+  WINNER: "winner",
+  LOSER: "loser",
+  NORMAL: "normal",
+});
+
+export const LOADTIMES = Object.freeze({
+  LEVELGUESSER: 3,
 });

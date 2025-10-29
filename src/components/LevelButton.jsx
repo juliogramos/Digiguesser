@@ -4,7 +4,7 @@ import imgAdult from "../assets/button_adult.webp";
 import imgPerfect from "../assets/button_perfect.webp";
 import imgUltimate from "../assets/button_ultimate.webp";
 import imgOther from "../assets/button_other.webp";
-import { LEVELS } from "../utils/constants";
+import { BUTTONSTATUS, LEVELS } from "../utils/constants";
 import { Button, Avatar } from "@mui/material";
 
 function getLevelProps(level) {
@@ -45,7 +45,7 @@ function getLevelProps(level) {
   return { imageSrc, label };
 }
 
-function LevelButton({ level, onClick, ...props }) {
+function LevelButton({ level, onClick, status, ...props }) {
   const { imageSrc, label } = getLevelProps(level);
   return (
     <Button
@@ -53,12 +53,26 @@ function LevelButton({ level, onClick, ...props }) {
       startIcon={
         <Avatar
           src={imageSrc}
-          sx={{ height: 32, width: 32, imageRendering: "crisp-edges" }}
+          sx={{
+            height: 32,
+            width: 32,
+            imageRendering: "crisp-edges",
+          }}
           variant="square"
         />
       }
       onClick={() => onClick(level)}
       variant="outlined"
+      sx={{
+        "&.Mui-disabled": {
+          color:
+            status === BUTTONSTATUS.WINNER
+              ? "success.main"
+              : status === BUTTONSTATUS.LOSER
+              ? "error.main"
+              : "disabled.main",
+        },
+      }}
       {...props}
     >
       {label}

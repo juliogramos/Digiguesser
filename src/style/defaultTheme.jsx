@@ -24,32 +24,35 @@ let defaultTheme = createTheme({
     boxBackground: {
       main: "#fff",
     },
+    disabled: {
+      main: "rgba(0, 0, 0, 0.12)",
+    },
   },
   typography: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     body1: {
-      fontSize: "1.25rem",
+      fontSize: "1.2rem",
     },
     h1: {
-      fontSize: "3rem",
+      fontSize: "2.4rem",
       letterSpacing: "0.50rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h2: {
-      fontSize: "2.5rem",
+      fontSize: "2rem",
       letterSpacing: "0.30rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h3: {
-      fontSize: "2.25rem",
+      fontSize: "1.6rem",
       letterSpacing: "0.10rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h4: {
-      fontSize: "2rem",
+      fontSize: "1.4rem",
       fontWeight: 600,
       textAlign: "center",
     },
