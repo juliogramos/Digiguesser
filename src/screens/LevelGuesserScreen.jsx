@@ -1,5 +1,4 @@
-import { useGameState } from "../hooks/useGameState";
-import { Container, Box, Card, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { GAMESTATE, LEVELS, LEVELVALUES, LOADTIMES } from "../utils/constants";
 import { GameStateDisplay } from "../components/GameStateDisplay";
 import { DigimonImage } from "../components/DigimonImage";
@@ -9,12 +8,16 @@ import { useState } from "react";
 import { getRandomId } from "../utils/getRandomId";
 import { useDigimon } from "../hooks/useDigimon";
 import { LevelButtonGroup } from "../components/LevelButtonGroup";
+import { GameCard } from "../components/GameCard";
+import { useGameContext } from "../hooks/useGameContext";
+import { DigimonIconButton } from "../components/DigimonIconButton";
+import imgTry from "../assets/button_try.webp";
 
 function LevelGuesserScreen() {
+  const { gameState, resetGameState, setWinner, setResults, clearResults } =
+    useGameContext();
   const [digimonId, setDigimonId] = useState(getRandomId);
-  const { gameState, setWinner, resetGameState } = useGameState();
   const { digimon, error, isLoading, isError } = useDigimon(digimonId);
-  const [results, setResults] = useState({ winners: [], loser: null });
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -22,9 +25,7 @@ function LevelGuesserScreen() {
     //  are in the same "category"
     let winnerLevels = [];
     digimon.levels.forEach((level) => {
-      console.log("current", level);
       Object.entries(LEVELVALUES).every(([l, v]) => {
-        console.log("this v", v);
         if (v.includes(level)) {
           winnerLevels.push(l);
           return false;
@@ -44,27 +45,14 @@ function LevelGuesserScreen() {
   }
 
   function newGame() {
+    clearResults();
     resetGameState((prevId) => setDigimonId(getRandomId(prevId)));
   }
 
   return (
-    <Container>
+    <>
       <TitleCard subTitle="Level Guesser" width={600} />
-      <Card
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 2,
-          p: 1,
-          maxWidth: 600,
-          maxHeight: 600,
-          width: "100%",
-          height: "100%",
-          pb: 2,
-        }}
-      >
+      <GameCard>
         <Typography variant="h3">
           {isLoading ? "Loading..." : digimon.name}
         </Typography>
@@ -76,21 +64,28 @@ function LevelGuesserScreen() {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "flex-end",
-            gap: 2,
+            gap: 4,
           }}
         >
-          <GameStateDisplay state={gameState} />
-          {gameState === GAMESTATE.WIN || gameState === GAMESTATE.LOSS ? (
+          <GameStateDisplay />
+          {gameState === GAMESTATE.WIN ? (
             <TimedLoader callback={newGame} duration={LOADTIMES.LEVELGUESSER} />
+          ) : gameState === GAMESTATE.LOSS ? (
+            <DigimonIconButton
+              imageSrc={imgTry}
+              label="New Game"
+              variant="contained"
+              color="secondary"
+              onClick={newGame}
+            />
           ) : null}
         </Box>
         <LevelButtonGroup
           onClick={levelGuesserLogic}
           disabledCondition={gameState !== GAMESTATE.STANDBY}
-          results={results}
         />
-      </Card>
-    </Container>
+      </GameCard>
+    </>
   );
 }
 

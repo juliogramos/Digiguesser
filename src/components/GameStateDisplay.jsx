@@ -1,8 +1,10 @@
 import { Typography, Box } from "@mui/material";
 import { GAMESTATE } from "../utils/constants";
+import { useGameContext } from "../hooks/useGameContext";
 
-function GameStateDisplay({ state }) {
-  switch (state) {
+function GameStateDisplay() {
+  const { gameState } = useGameContext();
+  switch (gameState) {
     case GAMESTATE.WIN:
       return (
         <Box sx={{ textAlign: "center" }}>
@@ -19,7 +21,7 @@ function GameStateDisplay({ state }) {
           <Typography color="fail.main" variant="h4">
             You Lost!
           </Typography>
-          <Typography>Next round in </Typography>
+          <Typography>Try again? </Typography>
         </Box>
       );
 

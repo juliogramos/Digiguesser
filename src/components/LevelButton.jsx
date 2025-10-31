@@ -37,7 +37,6 @@ function getLevelProps(level) {
       break;
 
     default:
-      console.log("other");
       imageSrc = imgOther;
       label = "Other";
       break;
@@ -47,37 +46,8 @@ function getLevelProps(level) {
 
 function LevelButton({ level, onClick, status, ...props }) {
   const { imageSrc, label } = getLevelProps(level);
-  return (
-    <Button
-      aria-label={label}
-      startIcon={
-        <Avatar
-          src={imageSrc}
-          sx={{
-            height: 32,
-            width: 32,
-            imageRendering: "crisp-edges",
-          }}
-          variant="square"
-        />
-      }
-      onClick={() => onClick(level)}
-      variant="outlined"
-      sx={{
-        "&.Mui-disabled": {
-          color:
-            status === BUTTONSTATUS.WINNER
-              ? "success.main"
-              : status === BUTTONSTATUS.LOSER
-              ? "error.main"
-              : "disabled.main",
-        },
-      }}
-      {...props}
-    >
-      {label}
-    </Button>
-  );
+  console.log(label, status);
+  return <Button {...props}>{label}</Button>;
 }
 
 export { LevelButton };

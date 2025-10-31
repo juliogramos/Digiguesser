@@ -14,8 +14,10 @@ _Digimon and related media belong to Bandai._
 
 - [x] Put Loader in its own file
 - [x] Import styles from [Digimon Search](https://github.com/juliogramos/Digimon-Search)
-- [ ] Style buttons
+- [x] Style buttons
+- [x] Loss screen
 - [ ] Add streak (local storage)
 - [ ] Error Handling
+- [ ] Dark and light themes, alt naming scheme (context)
 - [ ] Style further
 - [ ] **Deploy**

@@ -1,8 +1,54 @@
 import { Box } from "@mui/material";
-import { LevelButton } from "./LevelButton";
 import { BUTTONSTATUS, LEVELS } from "../utils/constants";
+import { useGameContext } from "../hooks/useGameContext";
+import imgBaby from "../assets/button_baby.webp";
+import imgChild from "../assets/button_child.webp";
+import imgAdult from "../assets/button_adult.webp";
+import imgPerfect from "../assets/button_perfect.webp";
+import imgUltimate from "../assets/button_ultimate.webp";
+import imgOther from "../assets/button_other.webp";
+import { DigimonIconButton } from "./DigimonIconButton";
 
-function LevelButtonGroup({ onClick, disabledCondition, results }) {
+function getLevelProps(level) {
+  console.log(level);
+  let imageSrc;
+  let label;
+  switch (level) {
+    case LEVELS.BABY:
+      imageSrc = imgBaby;
+      label = "Baby";
+      break;
+
+    case LEVELS.CHILD:
+      imageSrc = imgChild;
+      label = "Child";
+      break;
+
+    case LEVELS.ADULT:
+      imageSrc = imgAdult;
+      label = "Adult";
+      break;
+
+    case LEVELS.PERFECT:
+      imageSrc = imgPerfect;
+      label = "Pefect";
+      break;
+
+    case LEVELS.ULTIMATE:
+      imageSrc = imgUltimate;
+      label = "Ultimate";
+      break;
+
+    default:
+      imageSrc = imgOther;
+      label = "Other";
+      break;
+  }
+  return { imageSrc, label };
+}
+
+function LevelButtonGroup({ onClick, disabledCondition }) {
+  const { results } = useGameContext();
   const { winners, loser } = results;
   return (
     <Box
@@ -15,22 +61,43 @@ function LevelButtonGroup({ onClick, disabledCondition, results }) {
       }}
     >
       {Object.entries(LEVELS).map(([key, value]) => {
+        const buttonStatus = winners.includes(value)
+          ? BUTTONSTATUS.WINNER
+          : loser === value
+          ? BUTTONSTATUS.LOSER
+          : BUTTONSTATUS.NORMAL;
+
+        const { imageSrc, label } = getLevelProps(value);
+
         return (
-          <LevelButton
+          <DigimonIconButton
+            variant="contained"
+            color="secondary"
+            fontSize="small"
+            imageSrc={imageSrc}
+            label={label}
+            aria-label={value}
             level={value}
             disabled={disabledCondition}
-            onClick={onClick}
+            onClick={() => onClick(value)}
+            size={buttonStatus !== BUTTONSTATUS.WINNER ? "medium" : "large"}
             key={key}
-            status={
-              winners.includes(value)
-                ? BUTTONSTATUS.WINNER
-                : loser === value
-                ? BUTTONSTATUS.LOSER
-                : BUTTONSTATUS.NORMAL
-            }
+            sx={{
+              "&.Mui-disabled": {
+                color:
+                  buttonStatus === BUTTONSTATUS.WINNER
+                    ? "success.main"
+                    : buttonStatus === BUTTONSTATUS.LOSER
+                    ? "error.main"
+                    : "disabled.main",
+                display:
+                  buttonStatus === BUTTONSTATUS.NORMAL ? "none" : "inline-flex",
+                border: "none",
+              },
+            }}
           >
             {key.charAt(0).toUpperCase() + key.slice(1)}
-          </LevelButton>
+          </DigimonIconButton>
         );
       })}
     </Box>

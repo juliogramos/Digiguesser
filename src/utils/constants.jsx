@@ -50,3 +50,13 @@ export const BUTTONSTATUS = Object.freeze({
 export const LOADTIMES = Object.freeze({
   LEVELGUESSER: 3,
 });
+
+export const DEFAULTRESULTS = Object.freeze({
+  winners: [],
+  loser: null,
+});
+
+export const ICONSIZE = Object.freeze({
+  HEIGHT: 32,
+  WIDTH: 32,
+});
