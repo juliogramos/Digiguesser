@@ -1,13 +1,13 @@
+import imgBaby from "@/assets/button_baby.webp";
+import imgChild from "@/assets/button_child.webp";
+import imgAdult from "@/assets/button_adult.webp";
+import imgPerfect from "@/assets/button_perfect.webp";
+import imgUltimate from "@/assets/button_ultimate.webp";
+import imgOther from "@/assets/button_other.webp";
 import { Box } from "@mui/material";
-import { BUTTONSTATUS, LEVELS } from "../utils/constants";
-import { useGameContext } from "../hooks/useGameContext";
-import imgBaby from "../assets/button_baby.webp";
-import imgChild from "../assets/button_child.webp";
-import imgAdult from "../assets/button_adult.webp";
-import imgPerfect from "../assets/button_perfect.webp";
-import imgUltimate from "../assets/button_ultimate.webp";
-import imgOther from "../assets/button_other.webp";
-import { DigimonIconButton } from "./DigimonIconButton";
+import { BUTTONSTATUS, LEVELS } from "@/utils/constants";
+import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
+import DigimonIconButton from "@/components/DigimonIconButton";
 
 function getLevelProps(level) {
   console.log(level);
@@ -48,7 +48,7 @@ function getLevelProps(level) {
 }
 
 function LevelButtonGroup({ onClick, disabledCondition }) {
-  const { results } = useGameContext();
+  const { results } = useLevelGuesserContext();
   const { winners, loser } = results;
   return (
     <Box
@@ -104,4 +104,4 @@ function LevelButtonGroup({ onClick, disabledCondition }) {
   );
 }
 
-export { LevelButtonGroup };
+export default LevelButtonGroup;

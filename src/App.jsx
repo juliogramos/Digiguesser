@@ -1,14 +1,10 @@
-import "./App.css";
 import { Container } from "@mui/material";
-import { GameProvider } from "./components/GameProvider";
-import { LevelGuesserScreen } from "./screens/LevelGuesserScreen";
+import { LevelGuesserScreen } from "./screens/LevelGuesser";
 
 function App() {
   return (
     <Container>
-      <GameProvider>
-        <LevelGuesserScreen />
-      </GameProvider>
+      <LevelGuesserScreen />
     </Container>
   );
 }

@@ -11,4 +11,4 @@ async function fetchDigimon(id) {
   return res.json();
 }
 
-export { fetchDigimon };
+export default fetchDigimon;

@@ -42,4 +42,4 @@ function TitleCard({ subTitle = null, ...props }) {
   );
 }
 
-export { TitleCard };
+export default TitleCard;

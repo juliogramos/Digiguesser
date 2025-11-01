@@ -1,9 +1,9 @@
 import { Typography, Box } from "@mui/material";
-import { GAMESTATE } from "../utils/constants";
-import { useGameContext } from "../hooks/useGameContext";
+import { GAMESTATE } from "@/utils/constants";
+import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 
-function GameStateDisplay() {
-  const { gameState } = useGameContext();
+function LevelGuesserStateDisplay() {
+  const { gameState } = useLevelGuesserContext();
   switch (gameState) {
     case GAMESTATE.WIN:
       return (
@@ -30,4 +30,4 @@ function GameStateDisplay() {
   }
 }
 
-export { GameStateDisplay };
+export default LevelGuesserStateDisplay;

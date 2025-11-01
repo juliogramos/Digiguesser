@@ -23,4 +23,4 @@ function GameCard({ children, ...props }) {
   );
 }
 
-export { GameCard };
+export default GameCard;

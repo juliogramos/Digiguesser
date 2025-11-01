@@ -56,4 +56,4 @@ function TimedLoader({ duration = 3, callback }) {
   );
 }
 
-export { TimedLoader };
+export default TimedLoader;

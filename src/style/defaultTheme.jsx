@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import bgImg from "../assets/bg.png";
+import bgImg from "@/assets/bg.png";
 
 const defaultSpacing = 8;
 

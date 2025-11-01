@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchDigimon } from "../utils/fetchDigimon";
+import { fetchDigimon } from "@/utils";
 
 function assembleDigimon(data) {
   let levelList = [];
@@ -31,4 +31,4 @@ function useDigimon(digimonId) {
   return { digimon, error, isError, isLoading };
 }
 
-export { useDigimon };
+export default useDigimon;

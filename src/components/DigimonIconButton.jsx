@@ -1,5 +1,5 @@
 import { Button, Avatar } from "@mui/material";
-import { ICONSIZE } from "../utils/constants";
+import { ICONSIZE } from "@/utils/constants";
 
 function DigimonIconButton({ imageSrc, label, ...props }) {
   return (
@@ -23,4 +23,4 @@ function DigimonIconButton({ imageSrc, label, ...props }) {
   );
 }
 
-export { DigimonIconButton };
+export default DigimonIconButton;

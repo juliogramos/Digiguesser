@@ -1,21 +1,23 @@
 import { Box, Typography } from "@mui/material";
-import { GAMESTATE, LEVELS, LEVELVALUES, LOADTIMES } from "../utils/constants";
-import { GameStateDisplay } from "../components/GameStateDisplay";
-import { DigimonImage } from "../components/DigimonImage";
-import { TimedLoader } from "../components/TimedLoader";
-import { TitleCard } from "../components/TitleCard";
+import { GAMESTATE, LEVELS, LEVELVALUES, LOADTIMES } from "@/utils/constants";
+import {
+  DigimonIconButton,
+  DigimonImage,
+  GameCard,
+  TimedLoader,
+  TitleCard,
+} from "@/components";
+import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
+import LevelButtonGroup from "./LevelButtonGroup";
 import { useState } from "react";
-import { getRandomId } from "../utils/getRandomId";
-import { useDigimon } from "../hooks/useDigimon";
-import { LevelButtonGroup } from "../components/LevelButtonGroup";
-import { GameCard } from "../components/GameCard";
-import { useGameContext } from "../hooks/useGameContext";
-import { DigimonIconButton } from "../components/DigimonIconButton";
-import imgTry from "../assets/button_try.webp";
+import { getRandomId } from "@/utils";
+import { useDigimon } from "@/hooks";
+import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
+import imgTry from "@/assets/button_try.webp";
 
 function LevelGuesserScreen() {
   const { gameState, resetGameState, setWinner, setResults, clearResults } =
-    useGameContext();
+    useLevelGuesserContext();
   const [digimonId, setDigimonId] = useState(getRandomId);
   const { digimon, error, isLoading, isError } = useDigimon(digimonId);
 
@@ -67,7 +69,7 @@ function LevelGuesserScreen() {
             gap: 4,
           }}
         >
-          <GameStateDisplay />
+          <LevelGuesserStateDisplay />
           {gameState === GAMESTATE.WIN ? (
             <TimedLoader callback={newGame} duration={LOADTIMES.LEVELGUESSER} />
           ) : gameState === GAMESTATE.LOSS ? (

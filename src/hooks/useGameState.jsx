@@ -1,4 +1,4 @@
-import { GAMESTATE } from "../utils/constants";
+import { GAMESTATE } from "@/utils/constants";
 import { useCallback, useState } from "react";
 
 function useGameState() {
@@ -16,4 +16,4 @@ function useGameState() {
   return { gameState, setWinner, resetGameState };
 }
 
-export { useGameState };
+export default useGameState;

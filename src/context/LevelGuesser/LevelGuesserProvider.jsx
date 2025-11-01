@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useGameState } from "../hooks/useGameState";
-import { gameContext as GameContext } from "../hooks/useGameContext";
-import { DEFAULTRESULTS } from "../utils/constants";
+import { useGameState } from "../../hooks";
+import { levelGuesserContext as LevelGuesserContext } from "./useLevelGuesserContext";
+import { DEFAULTRESULTS } from "../../utils/constants";
 
-function GameProvider(props) {
+function LevelGuesserProvider(props) {
   const { gameState, setWinner, resetGameState } = useGameState();
   const [results, setResults] = useState(DEFAULTRESULTS);
 
@@ -17,7 +17,7 @@ function GameProvider(props) {
     setResults,
     clearResults,
   };
-  return <GameContext.Provider value={value} {...props} />;
+  return <LevelGuesserContext.Provider value={value} {...props} />;
 }
 
-export { GameProvider };
+export default LevelGuesserProvider;

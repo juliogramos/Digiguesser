@@ -12,4 +12,4 @@ function getRandomId(differentId = null) {
   return id;
 }
 
-export { getRandomId };
+export default getRandomId;

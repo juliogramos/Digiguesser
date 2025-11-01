@@ -1,6 +1,6 @@
 import { CircularProgress, Box } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { DIGIMONIMAGESIZE } from "../utils/constants";
+import { DIGIMONIMAGESIZE } from "@/utils/constants";
 
 function DigimonImage({ src }) {
   const [loading, setLoading] = useState(true);
@@ -58,4 +58,4 @@ function DigimonImage({ src }) {
   );
 }
 
-export { DigimonImage };
+export default DigimonImage;
