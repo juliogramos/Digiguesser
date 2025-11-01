@@ -9,8 +9,6 @@ import {
 } from "@/components";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
-import { useState } from "react";
-import { getRandomId } from "@/utils";
 import { useDigimon } from "@/hooks";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import imgTry from "@/assets/button_try.webp";
@@ -18,8 +16,7 @@ import imgTry from "@/assets/button_try.webp";
 function LevelGuesserScreen() {
   const { gameState, resetGameState, setWinner, setResults, clearResults } =
     useLevelGuesserContext();
-  const [digimonId, setDigimonId] = useState(getRandomId);
-  const { digimon, error, isLoading, isError } = useDigimon(digimonId);
+  const { digimon, error, isLoading, isError, getRandomDigimon } = useDigimon();
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -48,7 +45,7 @@ function LevelGuesserScreen() {
 
   function newGame() {
     clearResults();
-    resetGameState((prevId) => setDigimonId(getRandomId(prevId)));
+    resetGameState(getRandomDigimon);
   }
 
   return (

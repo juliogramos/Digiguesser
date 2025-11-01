@@ -10,7 +10,6 @@ import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserCo
 import DigimonIconButton from "@/components/DigimonIconButton";
 
 function getLevelProps(level) {
-  console.log(level);
   let imageSrc;
   let label;
   switch (level) {

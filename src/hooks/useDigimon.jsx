@@ -1,5 +1,6 @@
+import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDigimon } from "@/utils";
+import { fetchDigimon, getRandomId } from "@/utils";
 
 function assembleDigimon(data) {
   let levelList = [];
@@ -17,7 +18,8 @@ function assembleDigimon(data) {
   };
 }
 
-function useDigimon(digimonId) {
+function useDigimon(id = null) {
+  const [digimonId, setDigimonId] = useState(() => id ?? getRandomId());
   const { data, error, isError, isLoading } = useQuery({
     queryKey: ["digimon", digimonId],
     queryFn: async () => {
@@ -27,8 +29,22 @@ function useDigimon(digimonId) {
     enabled: !!digimonId,
   });
 
+  const getRandomDigimon = useCallback(
+    () => setDigimonId((prevId) => getRandomId(prevId)),
+    []
+  );
+
+  const getDigimonById = useCallback((id) => setDigimonId(id), []);
+
   const digimon = data ? assembleDigimon(data) : null;
-  return { digimon, error, isError, isLoading };
+  return {
+    digimon,
+    error,
+    isError,
+    isLoading,
+    getRandomDigimon,
+    getDigimonById,
+  };
 }
 
 export default useDigimon;

@@ -13,7 +13,6 @@ function DigimonImage({ src }) {
   }, []);
 
   useEffect(() => {
-    console.log(src);
     if (!src) setLoading(true);
   }, [src]);
 
