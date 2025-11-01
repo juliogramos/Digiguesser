@@ -35,6 +35,7 @@ let defaultTheme = createTheme({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     body1: {
       fontSize: "1.2rem",
+      lineHeight: "1.5rem",
     },
     h1: {
       fontSize: "2.4rem",
@@ -103,6 +104,8 @@ defaultTheme = createTheme(defaultTheme, {
           height: "100%",
         },
         body: {
+          fontSize: "16px",
+          lineHeight: 1.5,
           height: "100%",
           background: `${defaultTheme.palette.bodyBackground.main} url(${bgImg}) repeat left top`,
           backgroundSize: `${2640 / 1.375}px auto`,

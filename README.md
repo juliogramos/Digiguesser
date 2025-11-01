@@ -19,7 +19,7 @@ _Digimon and related media belong to Bandai._
 - [x] Add streak (local storage)
 - [ ] Disclaimer/Credits
 - [ ] Main menu
-- [ ] Error Handling
+- [x] Error Handling
 - [ ] Dark and light themes, alt naming scheme (context)
 - [ ] Style further
 - [ ] **Deploy**

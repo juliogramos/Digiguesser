@@ -1,6 +1,6 @@
 import { Card } from "@mui/material";
 
-function GameCard({ children, ...props }) {
+function GameCard({ children, sx, ...props }) {
   return (
     <Card
       sx={{
@@ -15,6 +15,7 @@ function GameCard({ children, ...props }) {
         width: "100%",
         height: "100%",
         pb: 2,
+        ...sx,
       }}
       {...props}
     >

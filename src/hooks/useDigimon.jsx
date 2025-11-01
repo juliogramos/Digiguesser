@@ -20,13 +20,15 @@ function assembleDigimon(data) {
 
 function useDigimon(id = null) {
   const [digimonId, setDigimonId] = useState(() => id ?? getRandomId());
-  const { data, error, isError, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["digimon", digimonId],
     queryFn: async () => {
       const data = await fetchDigimon(digimonId);
+      if (data.error) throw new Error(data.message);
       return data;
     },
-    enabled: !!digimonId,
+    throwOnError: true,
+    retry: 0,
   });
 
   const getRandomDigimon = useCallback(
@@ -39,8 +41,6 @@ function useDigimon(id = null) {
   const digimon = data ? assembleDigimon(data) : null;
   return {
     digimon,
-    error,
-    isError,
     isLoading,
     getRandomDigimon,
     getDigimonById,

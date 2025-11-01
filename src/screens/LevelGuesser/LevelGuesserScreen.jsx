@@ -19,7 +19,7 @@ import { EmojiEvents } from "@mui/icons-material";
 function LevelGuesserScreen() {
   const { gameState, resetGameState, setWinner, setResults, clearResults } =
     useLevelGuesserContext();
-  const { digimon, error, isLoading, isError, getRandomDigimon } = useDigimon();
+  const { digimon, isLoading, getRandomDigimon } = useDigimon();
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
 
   function levelGuesserLogic(userGuess) {
@@ -78,7 +78,7 @@ function LevelGuesserScreen() {
           ) : gameState === GAMESTATE.LOSS ? (
             <DigimonIconButton
               imageSrc={imgTry}
-              label="New Game"
+              label="Try Again"
               variant="contained"
               color="secondary"
               onClick={newGame}
