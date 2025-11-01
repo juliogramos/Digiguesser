@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography, Chip } from "@mui/material";
 import { GAMESTATE, LEVELS, LEVELVALUES, LOADTIMES } from "@/utils/constants";
 import {
   DigimonIconButton,
@@ -6,17 +6,21 @@ import {
   GameCard,
   TimedLoader,
   TitleCard,
+  BoxRow,
 } from "@/components";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
 import { useDigimon } from "@/hooks";
+import { useStreak } from "@/hooks";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import imgTry from "@/assets/button_try.webp";
+import { EmojiEvents } from "@mui/icons-material";
 
 function LevelGuesserScreen() {
   const { gameState, resetGameState, setWinner, setResults, clearResults } =
     useLevelGuesserContext();
   const { digimon, error, isLoading, isError, getRandomDigimon } = useDigimon();
+  const { streak, highscore, increaseStreak, resetStreak } = useStreak();
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -41,6 +45,7 @@ function LevelGuesserScreen() {
 
     setWinner(isWinner);
     setResults({ winners: winnerLevels, loser: isWinner ? null : userGuess });
+    isWinner ? increaseStreak() : resetStreak();
   }
 
   function newGame() {
@@ -51,21 +56,22 @@ function LevelGuesserScreen() {
   return (
     <>
       <TitleCard subTitle="Level Guesser" width={600} />
+
+      <BoxRow>
+        <Chip label={"Streak: " + streak} />
+        <Chip
+          icon={<EmojiEvents color="gold" />}
+          label={"High Score: " + highscore}
+        />
+      </BoxRow>
+
       <GameCard>
         <Typography variant="h3">
           {isLoading ? "Loading..." : digimon.name}
         </Typography>
         <DigimonImage src={digimon?.image.href ?? null} />
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "flex-end",
-            gap: 4,
-          }}
-        >
+        <BoxRow>
           <LevelGuesserStateDisplay />
           {gameState === GAMESTATE.WIN ? (
             <TimedLoader callback={newGame} duration={LOADTIMES.LEVELGUESSER} />
@@ -78,7 +84,7 @@ function LevelGuesserScreen() {
               onClick={newGame}
             />
           ) : null}
-        </Box>
+        </BoxRow>
         <LevelButtonGroup
           onClick={levelGuesserLogic}
           disabledCondition={gameState !== GAMESTATE.STANDBY}

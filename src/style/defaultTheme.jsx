@@ -25,7 +25,10 @@ let defaultTheme = createTheme({
       main: "#fff",
     },
     disabled: {
-      main: "rgba(0, 0, 0, 0.12)",
+      main: "#e0e0e0",
+    },
+    gold: {
+      main: "#d3af37",
     },
   },
   typography: {
@@ -127,6 +130,19 @@ defaultTheme = createTheme(defaultTheme, {
           overflow: "hidden",
           p: defaultTheme.spacing(1),
           margin: "0 auto",
+        },
+      },
+    },
+
+    MuiChip: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+      styleOverrides: {
+        root: {
+          fontSize: "1rem",
+          fontWeight: 500,
+          letterSpacing: "0.05rem",
+          backgroundColor: defaultTheme.palette.disabled.main,
+          color: "black",
         },
       },
     },

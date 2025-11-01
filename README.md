@@ -16,7 +16,7 @@ _Digimon and related media belong to Bandai._
 - [x] Import styles from [Digimon Search](https://github.com/juliogramos/Digimon-Search)
 - [x] Style buttons
 - [x] Loss screen
-- [ ] Add streak (local storage)
+- [x] Add streak (local storage)
 - [ ] Disclaimer/Credits
 - [ ] Main menu
 - [ ] Error Handling
