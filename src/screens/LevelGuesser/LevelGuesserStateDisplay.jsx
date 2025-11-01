@@ -3,7 +3,7 @@ import { GAMESTATE } from "@/utils/constants";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 
 function LevelGuesserStateDisplay() {
-  const { gameState } = useLevelGuesserContext();
+  const { gameState, streak, highscore } = useLevelGuesserContext();
   switch (gameState) {
     case GAMESTATE.WIN:
       return (
@@ -11,7 +11,10 @@ function LevelGuesserStateDisplay() {
           <Typography color="success.main" variant="h4">
             You Won!
           </Typography>
-          <Typography>Next round in </Typography>
+          <Typography>
+            Your streak: <strong>{streak}</strong>
+          </Typography>
+          <Typography>Next round in... </Typography>
         </Box>
       );
 
@@ -21,7 +24,8 @@ function LevelGuesserStateDisplay() {
           <Typography color="fail.main" variant="h4">
             You Lost!
           </Typography>
-          <Typography>Try again? </Typography>
+          <Typography>Final Score: {streak}</Typography>
+          <Typography>High score: {highscore}</Typography>
         </Box>
       );
 

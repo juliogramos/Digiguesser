@@ -11,16 +11,23 @@ import {
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
 import { useDigimon } from "@/hooks";
-import { useStreak } from "@/hooks";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
 
 function LevelGuesserScreen() {
-  const { gameState, resetGameState, setWinner, setResults, clearResults } =
-    useLevelGuesserContext();
+  const {
+    gameState,
+    resetGameState,
+    setWinner,
+    setResults,
+    clearResults,
+    streak,
+    highscore,
+    increaseStreak,
+    resetStreak,
+  } = useLevelGuesserContext();
   const { digimon, isLoading, getRandomDigimon } = useDigimon();
-  const { streak, highscore, increaseStreak, resetStreak } = useStreak();
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -45,10 +52,11 @@ function LevelGuesserScreen() {
 
     setWinner(isWinner);
     setResults({ winners: winnerLevels, loser: isWinner ? null : userGuess });
-    isWinner ? increaseStreak() : resetStreak();
+    if (isWinner) increaseStreak();
   }
 
   function newGame() {
+    resetStreak();
     clearResults();
     resetGameState(getRandomDigimon);
   }
@@ -58,7 +66,7 @@ function LevelGuesserScreen() {
       <TitleCard subTitle="Level Guesser" width={600} />
 
       <BoxRow>
-        <Chip label={"Streak: " + streak} />
+        <Chip label={"Score: " + streak} />
         <Chip
           icon={<EmojiEvents color="gold" />}
           label={"High Score: " + highscore}
