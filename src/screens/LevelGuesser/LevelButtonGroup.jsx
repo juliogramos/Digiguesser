@@ -3,7 +3,7 @@ import { BUTTONSTATUS, LEVELS } from "@/utils/constants";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import DigimonIconButton from "@/components/DigimonIconButton";
 
-function LevelButtonGroup({ onClick, disabledCondition }) {
+function LevelButtonGroup({ onClick, disabledCondition, altNaming }) {
   const { results } = useLevelGuesserContext();
   const { winners, loser } = results;
   return (
@@ -28,7 +28,7 @@ function LevelButtonGroup({ onClick, disabledCondition }) {
             variant="contained"
             color="secondary"
             fontSize="small"
-            label={value.LABEL}
+            label={!altNaming ? value.LABEL : value.ALT}
             imageSrc={value.IMG}
             aria-label={value}
             disabled={disabledCondition}
@@ -48,9 +48,7 @@ function LevelButtonGroup({ onClick, disabledCondition }) {
                 border: "none",
               },
             }}
-          >
-            {key.charAt(0).toUpperCase() + key.slice(1)}
-          </DigimonIconButton>
+          />
         );
       })}
     </Box>

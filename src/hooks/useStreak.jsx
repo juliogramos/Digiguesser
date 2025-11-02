@@ -4,23 +4,18 @@ import { useLocalStorageState } from ".";
 function useStreak() {
   const [streak, setStreak] = useState(0);
 
-  const {
-    state: highscore,
-    setState: setHighscore,
-    storeState: storeHighscore,
-  } = useLocalStorageState("local-storage-streak", 0);
+  const { state: highscore, setAndStoreState: storeHighscore } =
+    useLocalStorageState("local-storage-streak", 0);
 
   const increaseStreak = useCallback(() => {
     const newStreak = streak + 1;
     setStreak(newStreak);
     if (newStreak > highscore) {
-      setHighscore(newStreak);
-      storeHighscore();
+      storeHighscore(newStreak);
     }
-  }, [highscore, setHighscore, storeHighscore, streak]);
+  }, [highscore, storeHighscore, streak]);
 
   const resetStreak = useCallback(() => {
-    console.log("RESETED");
     setStreak(0);
   }, []);
 

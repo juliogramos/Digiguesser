@@ -3,15 +3,24 @@ import { useState, useCallback } from "react";
 function useLocalStorageState(key, isNumber, initValue = null) {
   if (!key) throw new Error("useLocalStorageState must be used with a key!");
 
-  let initialState = localStorage.getItem(key);
-  initialState ? (initialState = JSON.parse(initialState)) : initValue;
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState(() => {
+    const initialState = localStorage.getItem(key);
+    if (initialState) {
+      return JSON.parse(initialState);
+    } else {
+      return initValue;
+    }
+  });
 
-  const storeState = useCallback(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+  const setAndStoreState = useCallback(
+    (newState) => {
+      setState(newState);
+      localStorage.setItem(key, JSON.stringify(newState));
+    },
+    [key]
+  );
 
-  return { state, setState, storeState };
+  return { state, setState, setAndStoreState };
 }
 
 export default useLocalStorageState;

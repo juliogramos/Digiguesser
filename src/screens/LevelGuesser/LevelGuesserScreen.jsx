@@ -1,4 +1,4 @@
-import { Typography, Chip } from "@mui/material";
+import { Typography, Chip, Switch, FormControlLabel, Box } from "@mui/material";
 import { GAMESTATE, LEVELS, LOADTIMES } from "@/utils/constants";
 import {
   DigimonIconButton,
@@ -11,7 +11,7 @@ import {
 } from "@/components";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
-import { useDigimon } from "@/hooks";
+import { useDigimon, useLocalStorageSwitch } from "@/hooks";
 import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
@@ -29,6 +29,8 @@ function LevelGuesserScreen() {
     resetStreak,
   } = useLevelGuesserContext();
   const { digimon, isLoading, getRandomDigimon } = useDigimon();
+  const { state: altNaming, toggleState: toggleAltNaming } =
+    useLocalStorageSwitch("alt-naming");
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -47,9 +49,6 @@ function LevelGuesserScreen() {
 
     // Handle case where digimon comes with no levels
     if (winnerIds.length === 0) winnerIds.push(LEVELS.OTHER.ID);
-
-    console.log("winners: ", winnerIds);
-    console.log("guess: ", userGuess);
 
     let isWinner = false;
     if (winnerIds.includes(userGuess)) isWinner = true;
@@ -80,6 +79,17 @@ function LevelGuesserScreen() {
             <Typography variant="body2">High Score: {highscore}</Typography>
           </BoxRow>
         </ChipBox>
+
+        <ChipBox>
+          <BoxRow sx={{ gap: 1, alignItems: "center" }}>
+            <Switch
+              size="small"
+              checked={altNaming}
+              onChange={toggleAltNaming}
+            />
+            <Typography variant="body2">Alt. naming</Typography>
+          </BoxRow>
+        </ChipBox>
       </BoxRow>
 
       <GameCard>
@@ -105,6 +115,7 @@ function LevelGuesserScreen() {
         <LevelButtonGroup
           onClick={levelGuesserLogic}
           disabledCondition={gameState !== GAMESTATE.STANDBY}
+          altNaming={altNaming}
         />
       </GameCard>
     </>
