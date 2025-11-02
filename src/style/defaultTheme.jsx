@@ -35,8 +35,13 @@ let defaultTheme = createTheme({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
     body1: {
       fontSize: "1.2rem",
-      lineHeight: "1.5rem",
     },
+
+    body2: {
+      fontSize: "1rem",
+      fontWeight: 500,
+    },
+
     h1: {
       fontSize: "2.4rem",
       letterSpacing: "0.50rem",
@@ -133,19 +138,6 @@ defaultTheme = createTheme(defaultTheme, {
           overflow: "hidden",
           p: defaultTheme.spacing(1),
           margin: "0 auto",
-        },
-      },
-    },
-
-    MuiChip: {
-      fontFamily: ["Montserrat", "sans-serif"].join(","),
-      styleOverrides: {
-        root: {
-          fontSize: "1rem",
-          fontWeight: 500,
-          letterSpacing: "0.05rem",
-          backgroundColor: defaultTheme.palette.disabled.main,
-          color: "black",
         },
       },
     },

@@ -7,6 +7,7 @@ import {
   TimedLoader,
   TitleCard,
   BoxRow,
+  ChipBox,
 } from "@/components";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
@@ -69,11 +70,16 @@ function LevelGuesserScreen() {
       <TitleCard subTitle="Level Guesser" width={600} />
 
       <BoxRow>
-        <Chip label={"Score: " + streak} />
-        <Chip
-          icon={<EmojiEvents color="gold" />}
-          label={"High Score: " + highscore}
-        />
+        <ChipBox>
+          <Typography variant="body2">Score: {streak}</Typography>
+        </ChipBox>
+
+        <ChipBox>
+          <BoxRow sx={{ gap: 1 }}>
+            <EmojiEvents color="gold" />
+            <Typography variant="body2">High Score: {highscore}</Typography>
+          </BoxRow>
+        </ChipBox>
       </BoxRow>
 
       <GameCard>

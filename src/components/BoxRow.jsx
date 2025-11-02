@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-function BoxRow({ children, ...props }) {
+function BoxRow({ children, sx, ...props }) {
   return (
     <Box
       sx={{
@@ -9,6 +9,7 @@ function BoxRow({ children, ...props }) {
         justifyContent: "center",
         alignItems: "flex-end",
         gap: 4,
+        ...sx,
       }}
       {...props}
     >
