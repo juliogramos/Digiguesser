@@ -25,16 +25,20 @@ import {
 import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
 import { useState, useCallback } from "react";
+import { preload } from "react-dom";
 
 function LevelGuesserScreen() {
   const { gameState, setWinner, resetGameState } = useGameState();
   const [results, setResults] = useState(DEFAULTRESULTS);
   const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
-
   const { digimon, isLoading, getRandomDigimon } = useDigimon();
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
+
+  preload(imgTry, {
+    as: "image",
+  });
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
@@ -131,4 +135,4 @@ function LevelGuesserScreen() {
   );
 }
 
-export { LevelGuesserScreen };
+export default LevelGuesserScreen;
