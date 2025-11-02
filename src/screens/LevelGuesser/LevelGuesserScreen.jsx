@@ -1,5 +1,5 @@
 import { Typography, Chip } from "@mui/material";
-import { GAMESTATE, LEVELS, LEVELVALUES, LOADTIMES } from "@/utils/constants";
+import { GAMESTATE, LEVELS, LOADTIMES } from "@/utils/constants";
 import {
   DigimonIconButton,
   DigimonImage,
@@ -33,11 +33,11 @@ function LevelGuesserScreen() {
     // Gets the levels off the Digimon
     // Do it like that because of the Baby and Other cases where multiple values
     //  are in the same "category"
-    let winnerLevels = [];
+    let winnerIds = [];
     digimon.levels.forEach((level) => {
-      Object.entries(LEVELVALUES).every(([l, v]) => {
-        if (v.includes(level)) {
-          winnerLevels.push(l);
+      Object.entries(LEVELS).every(([, value]) => {
+        if (value.VALUES.includes(level)) {
+          winnerIds.push(value.ID);
           return false;
         }
         return true;
@@ -45,18 +45,21 @@ function LevelGuesserScreen() {
     });
 
     // Handle case where digimon comes with no levels
-    if (winnerLevels.length === 0) winnerLevels.push(LEVELS.OTHER);
+    if (winnerIds.length === 0) winnerIds.push(LEVELS.OTHER.ID);
+
+    console.log("winners: ", winnerIds);
+    console.log("guess: ", userGuess);
 
     let isWinner = false;
-    if (winnerLevels.includes(userGuess)) isWinner = true;
+    if (winnerIds.includes(userGuess)) isWinner = true;
 
     setWinner(isWinner);
-    setResults({ winners: winnerLevels, loser: isWinner ? null : userGuess });
+    setResults({ winners: winnerIds, loser: isWinner ? null : userGuess });
     if (isWinner) increaseStreak();
   }
 
   function newGame() {
-    resetStreak();
+    if (gameState === GAMESTATE.LOSS) resetStreak();
     clearResults();
     resetGameState(getRandomDigimon);
   }

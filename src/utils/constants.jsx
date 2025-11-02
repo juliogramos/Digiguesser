@@ -1,3 +1,10 @@
+import imgBaby from "@/assets/button_baby.webp";
+import imgChild from "@/assets/button_child.webp";
+import imgAdult from "@/assets/button_adult.webp";
+import imgPerfect from "@/assets/button_perfect.webp";
+import imgUltimate from "@/assets/button_ultimate.webp";
+import imgOther from "@/assets/button_other.webp";
+
 export const BASEURL = `https://digi-api.com/api/v1/digimon/`;
 
 export const MAXDIGIMON = 1488; //According to a query to DAPI
@@ -10,21 +17,48 @@ export const DEFAULTDIGIMONSTATUS = Object.freeze({
 });
 
 export const LEVELS = Object.freeze({
-  BABY: "Baby",
-  CHILD: "Child",
-  ADULT: "Adult",
-  PERFECT: "Perfect",
-  ULTIMATE: "Ultimate",
-  OTHER: "Other",
-});
-
-export const LEVELVALUES = Object.freeze({
-  [LEVELS.BABY]: ["Baby I", "Baby II"],
-  [LEVELS.CHILD]: ["Child"],
-  [LEVELS.ADULT]: ["Adult"],
-  [LEVELS.PERFECT]: ["Perfect"],
-  [LEVELS.ULTIMATE]: ["Ultimate"],
-  [LEVELS.OTHER]: ["Armor", "Unknown", "Hybrid"],
+  BABY: {
+    ID: 0,
+    LABEL: "Baby",
+    ALT: "In-Training",
+    VALUES: ["Baby I", "Baby II"],
+    IMG: imgBaby,
+  },
+  CHILD: {
+    ID: 1,
+    LABEL: "Child",
+    ALT: "Rookie",
+    VALUES: ["Child"],
+    IMG: imgChild,
+  },
+  ADULT: {
+    ID: 2,
+    LABEL: "Adult",
+    ALT: "Champion",
+    VALUES: ["Adult"],
+    IMG: imgAdult,
+  },
+  PERFECT: {
+    ID: 3,
+    LABEL: "Perfect",
+    ALT: "Ultimate",
+    VALUES: ["Perfect"],
+    IMG: imgPerfect,
+  },
+  ULTIMATE: {
+    ID: 4,
+    LABEL: "Ultimate",
+    ALT: "Mega",
+    VALUES: ["Ultimate"],
+    IMG: imgUltimate,
+  },
+  OTHER: {
+    ID: 5,
+    LABEL: "Other",
+    ALT: "Other",
+    VALUES: ["Armor", "Unknown", "Hybrid"],
+    IMG: imgOther,
+  },
 });
 
 export const GAMESTATE = Object.freeze({

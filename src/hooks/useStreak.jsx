@@ -19,7 +19,10 @@ function useStreak() {
     }
   }, [highscore, setHighscore, storeHighscore, streak]);
 
-  const resetStreak = useCallback(() => setStreak(0), []);
+  const resetStreak = useCallback(() => {
+    console.log("RESETED");
+    setStreak(0);
+  }, []);
 
   return { streak, highscore, increaseStreak, resetStreak };
 }
