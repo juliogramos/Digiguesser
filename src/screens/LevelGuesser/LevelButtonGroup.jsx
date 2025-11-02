@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
 import { BUTTONSTATUS, LEVELS } from "@/utils/constants";
-import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 import DigimonIconButton from "@/components/DigimonIconButton";
 
-function LevelButtonGroup({ onClick, disabledCondition, altNaming }) {
-  const { results } = useLevelGuesserContext();
+function LevelButtonGroup({ onClick, disabledCondition, results, altNaming }) {
   const { winners, loser } = results;
   return (
     <Box

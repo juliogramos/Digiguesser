@@ -1,5 +1,10 @@
-import { Typography, Chip, Switch, FormControlLabel, Box } from "@mui/material";
-import { GAMESTATE, LEVELS, LOADTIMES } from "@/utils/constants";
+import { Typography, Switch } from "@mui/material";
+import {
+  GAMESTATE,
+  LEVELS,
+  LOADTIMES,
+  DEFAULTRESULTS,
+} from "@/utils/constants";
 import {
   DigimonIconButton,
   DigimonImage,
@@ -11,30 +16,29 @@ import {
 } from "@/components";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
-import { useDigimon, useLocalStorageSwitch } from "@/hooks";
-import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
+import {
+  useDigimon,
+  useLocalStorageSwitch,
+  useGameState,
+  useStreak,
+} from "@/hooks";
 import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
+import { useState, useCallback } from "react";
 
 function LevelGuesserScreen() {
-  const {
-    gameState,
-    resetGameState,
-    setWinner,
-    setResults,
-    clearResults,
-    streak,
-    highscore,
-    increaseStreak,
-    resetStreak,
-  } = useLevelGuesserContext();
+  const { gameState, setWinner, resetGameState } = useGameState();
+  const [results, setResults] = useState(DEFAULTRESULTS);
+  const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
+  const { streak, highscore, increaseStreak, resetStreak } = useStreak();
+
   const { digimon, isLoading, getRandomDigimon } = useDigimon();
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
 
   function levelGuesserLogic(userGuess) {
     // Gets the levels off the Digimon
-    // Do it like that because of the Baby and Other cases where multiple values
+    // Doing it like that because of the Baby and Other cases where multiple values
     //  are in the same "category"
     let winnerIds = [];
     digimon.levels.forEach((level) => {
@@ -99,7 +103,11 @@ function LevelGuesserScreen() {
         <DigimonImage src={digimon?.image.href ?? null} />
 
         <BoxRow>
-          <LevelGuesserStateDisplay />
+          <LevelGuesserStateDisplay
+            gameState={gameState}
+            streak={streak}
+            highscore={highscore}
+          />
           {gameState === GAMESTATE.WIN ? (
             <TimedLoader callback={newGame} duration={LOADTIMES.LEVELGUESSER} />
           ) : gameState === GAMESTATE.LOSS ? (
@@ -115,6 +123,7 @@ function LevelGuesserScreen() {
         <LevelButtonGroup
           onClick={levelGuesserLogic}
           disabledCondition={gameState !== GAMESTATE.STANDBY}
+          results={results}
           altNaming={altNaming}
         />
       </GameCard>

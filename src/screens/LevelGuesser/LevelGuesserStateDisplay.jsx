@@ -1,9 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import { GAMESTATE } from "@/utils/constants";
-import { useLevelGuesserContext } from "@/context/LevelGuesser/useLevelGuesserContext";
 
-function LevelGuesserStateDisplay() {
-  const { gameState, streak, highscore } = useLevelGuesserContext();
+function LevelGuesserStateDisplay({ gameState, streak, highscore }) {
   switch (gameState) {
     case GAMESTATE.WIN:
       return (
