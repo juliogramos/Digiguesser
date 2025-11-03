@@ -10,6 +10,15 @@ Queries from [DAPI](https://digi-api.com/).
 
 _Digimon and related media belong to Bandai._
 
+## Typescript Migration
+
+- [x] utils
+- [x] assets
+- [ ] style (do tailwind)
+- [ ] hooks
+- [ ] components
+- [ ] screens
+
 ## Todo
 
 - [x] Put Loader in its own file
