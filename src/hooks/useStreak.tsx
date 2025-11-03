@@ -1,0 +1,25 @@
+import { useState, useCallback } from "react";
+import useLocalStorageState from "./useLocalStorageState";
+
+function useStreak() {
+  const [streak, setStreak] = useState(0);
+
+  const { state: highscore, setAndStoreState: storeHighscore } =
+    useLocalStorageState("local-storage-streak", 0);
+
+  const increaseStreak = useCallback(() => {
+    const newStreak = streak + 1;
+    setStreak(newStreak);
+    if (newStreak > highscore) {
+      storeHighscore(newStreak);
+    }
+  }, [highscore, storeHighscore, streak]);
+
+  const resetStreak = useCallback(() => {
+    setStreak(0);
+  }, []);
+
+  return { streak, highscore, increaseStreak, resetStreak };
+}
+
+export default useStreak;

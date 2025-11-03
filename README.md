@@ -14,8 +14,8 @@ _Digimon and related media belong to Bandai._
 
 - [x] utils
 - [x] assets
-- [ ] style
-- [ ] hooks
+- [x] style
+- [x] hooks
 - [ ] components
 - [ ] screens
 
