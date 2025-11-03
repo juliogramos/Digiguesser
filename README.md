@@ -1,5 +1,7 @@
 # Digiguesser
 
+## This is the archived version of the project written in Javascript. The current version uses Typescript.
+
 Project made with React and Javascript.
 
 Layout inspired by the [Digimon Encyclopedia](https://digimon.net/reference_en/). Image assets taken from there.
