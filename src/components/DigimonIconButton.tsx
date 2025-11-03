@@ -1,17 +1,16 @@
-import { Button, Avatar } from "@mui/material";
+import { Button, Avatar, type ButtonProps } from "@mui/material";
 import { ICONSIZE } from "@/utils/constants";
 
 interface DigimonIconButtonProps {
   imageSrc: string;
   label: string;
-  [x: string]: unknown;
 }
 
 function DigimonIconButton({
   imageSrc,
   label,
   ...props
-}: DigimonIconButtonProps) {
+}: DigimonIconButtonProps & ButtonProps) {
   return (
     <Button
       aria-label={label}

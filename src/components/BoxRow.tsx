@@ -1,28 +1,11 @@
-import { Box } from "@mui/material";
-import type { SxProps } from "@mui/material/styles";
+import { Box, styled, type BoxProps } from "@mui/material";
 
-interface BoxRowProps {
-  children: React.ReactNode;
-  sx: SxProps;
-  props: unknown;
-}
-
-function BoxRow({ children, sx, ...props }: BoxRowProps) {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        gap: 4,
-        ...sx,
-      }}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-}
+const BoxRow = styled(Box)<BoxProps>(({ theme }) => ({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "flex-end",
+  gap: theme.spacing(4),
+}));
 
 export default BoxRow;
