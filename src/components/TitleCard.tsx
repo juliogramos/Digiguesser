@@ -17,7 +17,7 @@ function TitleCard({ subTitle = null, ...props }: TitleCardProps) {
         justifyContent: "center",
         alignItems: "center",
         gap: 2,
-        p: 1,
+        padding: 1,
         borderTop: "1px solid",
         borderBottom: "1px solid",
         borderColor: "primary.main",

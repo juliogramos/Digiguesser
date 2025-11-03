@@ -1,4 +1,4 @@
-import { Typography, Switch } from "@mui/material";
+import { Typography, Switch, Stack, Divider } from "@mui/material";
 import {
   type Level,
   LOADTIMES,
@@ -10,7 +10,6 @@ import DigimonImage from "@/components/DigimonImage";
 import GameCard from "@/components/GameCard";
 import TimedLoader from "@/components/TimedLoader";
 import TitleCard from "@/components/TitleCard";
-import BoxRow from "@/components/BoxRow";
 import ChipBox from "@/components/ChipBox";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
@@ -73,29 +72,41 @@ function LevelGuesserScreen() {
     <>
       <TitleCard subTitle="Level Guesser" width={600} />
 
-      <BoxRow>
+      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
         <ChipBox>
-          <Typography variant="body2">Score: {streak}</Typography>
+          <Stack
+            direction="row"
+            divider={
+              <Divider
+                aria-hidden="true"
+                orientation="vertical"
+                sx={{ bgcolor: "black" }}
+                flexItem
+              />
+            }
+            spacing={1}
+            sx={{ alignItems: "center" }}
+          >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <EmojiEvents sx={{ color: "#d3af37" }} />
+              <Typography variant="body2">Score: {streak}</Typography>
+            </Stack>
+
+            <Typography variant="body2">High: {highscore}</Typography>
+          </Stack>
         </ChipBox>
 
         <ChipBox>
-          <BoxRow sx={{ gap: 1 }}>
-            <EmojiEvents sx={{ color: "#d3af37" }} />
-            <Typography variant="body2">High Score: {highscore}</Typography>
-          </BoxRow>
-        </ChipBox>
-
-        <ChipBox>
-          <BoxRow sx={{ gap: 1, alignItems: "center" }}>
+          <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
             <Switch
               size="small"
               checked={altNaming}
               onChange={toggleAltNaming}
             />
             <Typography variant="body2">Alt. naming</Typography>
-          </BoxRow>
+          </Stack>
         </ChipBox>
-      </BoxRow>
+      </Stack>
 
       <GameCard>
         <Typography variant="h3">
@@ -103,7 +114,7 @@ function LevelGuesserScreen() {
         </Typography>
         <DigimonImage src={digimon?.image?.href ?? undefined} />
 
-        <BoxRow>
+        <Stack direction="row" spacing={4} sx={{ alignItems: "flex-end" }}>
           <LevelGuesserStateDisplay
             gameState={gameState}
             streak={streak}
@@ -120,7 +131,7 @@ function LevelGuesserScreen() {
               onClick={newGame}
             />
           ) : null}
-        </BoxRow>
+        </Stack>
         <LevelButtonGroup
           onClick={levelGuesserLogic}
           disabledCondition={gameState !== "standby"}

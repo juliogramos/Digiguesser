@@ -38,13 +38,18 @@ function DigimonImage({ src }: DigimonImageProps) {
         height: "100%",
       }}
     >
-      <span
-        style={{
-          display: loading ? "block" : "none",
+      <Box
+        sx={{
+          display: loading ? "flex" : "none",
+          flexDirection: "column",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <CircularProgress />
-      </span>
+        <CircularProgress size="25%" />
+      </Box>
       <span style={{ display: loading ? "none" : "block" }}>
         <img
           alt=""

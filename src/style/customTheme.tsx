@@ -2,6 +2,7 @@ import { createTheme } from "@mui/material";
 import bgImg from "@/assets/bg.png";
 
 let customTheme = createTheme({
+  spacing: 8,
   palette: {
     primary: {
       main: "#1251d0",
@@ -20,7 +21,7 @@ let customTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontFamily: ["Montserrat Variable", "sans-serif"].join(","),
     body1: {
       fontSize: "1.2rem",
     },
@@ -62,6 +63,12 @@ customTheme = createTheme(customTheme, {
     body1: {
       [customTheme.breakpoints.down("sm")]: {
         fontSize: "1rem",
+      },
+    },
+
+    body2: {
+      [customTheme.breakpoints.down("sm")]: {
+        fontSize: "0.875rem",
       },
     },
 
@@ -124,7 +131,7 @@ customTheme = createTheme(customTheme, {
           justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
-          p: customTheme.spacing(1),
+          padding: customTheme.spacing(2),
           margin: "0 auto",
         },
       },

@@ -53,7 +53,7 @@ function TimedLoader({ duration = 3, callback }: TimedLoaderProps) {
           justifyContent: "center",
         }}
       >
-        <Typography variant="caption" component="div">
+        <Typography variant="body2" component="div">
           {count > 0 ? count : null}
         </Typography>
       </Box>

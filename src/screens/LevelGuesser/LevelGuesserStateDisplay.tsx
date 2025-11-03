@@ -22,7 +22,6 @@ function LevelGuesserStateDisplay({
           <Typography>
             Your streak: <strong>{streak}</strong>
           </Typography>
-          <Typography>Next round in... </Typography>
         </Box>
       );
 

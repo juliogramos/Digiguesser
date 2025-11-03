@@ -1,12 +1,13 @@
-import { Stack, styled, type StackProps } from "@mui/material";
+import { Card, styled, type CardProps } from "@mui/material";
 
-const GameCard = styled(Stack)<StackProps>(({ theme }) => ({
+const GameCard = styled(Card)<CardProps>(({ theme }) => ({
+  display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "space-between",
   gap: theme.spacing(2),
-  p: theme.spacing(1),
-  pb: theme.spacing(2),
+  padding: theme.spacing(1),
+  paddingBottom: theme.spacing(2),
   maxWidth: 600,
   maxHeight: 600,
   width: "100%",
