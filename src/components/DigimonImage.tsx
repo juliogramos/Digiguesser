@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { DIGIMONIMAGESIZE } from "@/utils/constants";
 
 interface DigimonImageProps {
-  src: string;
+  src: string | undefined;
 }
 
 function DigimonImage({ src }: DigimonImageProps) {
@@ -17,7 +17,7 @@ function DigimonImage({ src }: DigimonImageProps) {
   }, []);
 
   useEffect(() => {
-    if (!src) setLoading(true);
+    if (src === undefined) setLoading(true);
   }, [src]);
 
   return (

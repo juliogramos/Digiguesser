@@ -18,7 +18,7 @@ _Digimon and related media belong to Bandai._
 - [x] hooks
 - [x] components
 - [x] CHANGE COMPONENTS TO STYLED
-- [ ] screens
+- [x] screens
 
 ## Todo
 
@@ -27,6 +27,7 @@ _Digimon and related media belong to Bandai._
 - [x] Style buttons
 - [x] Loss screen
 - [x] Add streak (local storage)
+- [ ] Placeholder image for DigimonImage in case there's no source
 - [ ] Disclaimer/Credits
 - [ ] Main menu
 - [x] Error Handling

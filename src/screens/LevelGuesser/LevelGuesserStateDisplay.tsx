@@ -1,9 +1,19 @@
 import { Typography, Box } from "@mui/material";
-import { GAMESTATE } from "@/utils/constants";
+import type { GameState } from "@/utils/constants";
 
-function LevelGuesserStateDisplay({ gameState, streak, highscore }) {
+interface LevelGuesserStateDisplayProps {
+  gameState: GameState;
+  streak: number;
+  highscore: number;
+}
+
+function LevelGuesserStateDisplay({
+  gameState,
+  streak,
+  highscore,
+}: LevelGuesserStateDisplayProps) {
   switch (gameState) {
-    case GAMESTATE.WIN:
+    case "win":
       return (
         <Box sx={{ textAlign: "center" }}>
           <Typography color="success.main" variant="h4">
@@ -16,7 +26,7 @@ function LevelGuesserStateDisplay({ gameState, streak, highscore }) {
         </Box>
       );
 
-    case GAMESTATE.LOSS:
+    case "loss":
       return (
         <Box sx={{ textAlign: "center" }}>
           <Typography color="fail.main" variant="h4">

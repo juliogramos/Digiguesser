@@ -1,27 +1,23 @@
 import { Typography, Switch } from "@mui/material";
 import {
-  GAMESTATE,
-  LEVELS,
+  type Level,
   LOADTIMES,
   DEFAULTRESULTS,
+  LEVELVALUES,
 } from "@/utils/constants";
-import {
-  DigimonIconButton,
-  DigimonImage,
-  GameCard,
-  TimedLoader,
-  TitleCard,
-  BoxRow,
-  ChipBox,
-} from "@/components";
+import DigimonIconButton from "@/components/DigimonIconButton";
+import DigimonImage from "@/components/DigimonImage";
+import GameCard from "@/components/GameCard";
+import TimedLoader from "@/components/TimedLoader";
+import TitleCard from "@/components/TitleCard";
+import BoxRow from "@/components/BoxRow";
+import ChipBox from "@/components/ChipBox";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
-import {
-  useDigimon,
-  useLocalStorageSwitch,
-  useGameState,
-  useStreak,
-} from "@/hooks";
+import useDigimon from "@/hooks/useDigimon";
+import useLocalStorageSwitch from "@/hooks/useLocalStorageSwitch";
+import useGameState from "@/hooks/useGameState";
+import useStreak from "@/hooks/useStreak";
 import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
 import { useState, useCallback } from "react";
@@ -40,15 +36,16 @@ function LevelGuesserScreen() {
     as: "image",
   });
 
-  function levelGuesserLogic(userGuess) {
+  function levelGuesserLogic(userGuess: Level) {
     // Gets the levels off the Digimon
     // Doing it like that because of the Baby and Other cases where multiple values
     //  are in the same "category"
-    let winnerIds = [];
-    digimon.levels.forEach((level) => {
-      Object.entries(LEVELS).every(([, value]) => {
+    const winnerLevels: Level[] = [];
+    digimon?.levels.forEach((level) => {
+      Object.entries(LEVELVALUES).every(([key, value]) => {
+        const typedKey = key as Level;
         if (value.VALUES.includes(level)) {
-          winnerIds.push(value.ID);
+          winnerLevels.push(typedKey);
           return false;
         }
         return true;
@@ -56,18 +53,18 @@ function LevelGuesserScreen() {
     });
 
     // Handle case where digimon comes with no levels
-    if (winnerIds.length === 0) winnerIds.push(LEVELS.OTHER.ID);
+    if (winnerLevels.length === 0) winnerLevels.push("Other");
 
     let isWinner = false;
-    if (winnerIds.includes(userGuess)) isWinner = true;
+    if (winnerLevels.includes(userGuess)) isWinner = true;
 
     setWinner(isWinner);
-    setResults({ winners: winnerIds, loser: isWinner ? null : userGuess });
+    setResults({ winners: winnerLevels, loser: isWinner ? null : userGuess });
     if (isWinner) increaseStreak();
   }
 
   function newGame() {
-    if (gameState === GAMESTATE.LOSS) resetStreak();
+    if (gameState === "loss") resetStreak();
     clearResults();
     resetGameState(getRandomDigimon);
   }
@@ -83,7 +80,7 @@ function LevelGuesserScreen() {
 
         <ChipBox>
           <BoxRow sx={{ gap: 1 }}>
-            <EmojiEvents color="gold" />
+            <EmojiEvents sx={{ color: "#d3af37" }} />
             <Typography variant="body2">High Score: {highscore}</Typography>
           </BoxRow>
         </ChipBox>
@@ -102,9 +99,9 @@ function LevelGuesserScreen() {
 
       <GameCard>
         <Typography variant="h3">
-          {isLoading ? "Loading..." : digimon.name}
+          {isLoading ? "Loading..." : digimon?.name}
         </Typography>
-        <DigimonImage src={digimon?.image.href ?? null} />
+        <DigimonImage src={digimon?.image?.href ?? undefined} />
 
         <BoxRow>
           <LevelGuesserStateDisplay
@@ -112,9 +109,9 @@ function LevelGuesserScreen() {
             streak={streak}
             highscore={highscore}
           />
-          {gameState === GAMESTATE.WIN ? (
+          {gameState === "win" ? (
             <TimedLoader callback={newGame} duration={LOADTIMES.LEVELGUESSER} />
-          ) : gameState === GAMESTATE.LOSS ? (
+          ) : gameState === "loss" ? (
             <DigimonIconButton
               imageSrc={imgTry}
               label="Try Again"
@@ -126,7 +123,7 @@ function LevelGuesserScreen() {
         </BoxRow>
         <LevelButtonGroup
           onClick={levelGuesserLogic}
-          disabledCondition={gameState !== GAMESTATE.STANDBY}
+          disabledCondition={gameState !== "standby"}
           results={results}
           altNaming={altNaming}
         />
