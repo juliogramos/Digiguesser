@@ -9,7 +9,6 @@ import DigimonIconButton from "@/components/DigimonIconButton";
 import DigimonImage from "@/components/DigimonImage";
 import GameCard from "@/components/GameCard";
 import TimedLoader from "@/components/TimedLoader";
-import TitleCard from "@/components/TitleCard";
 import ChipBox from "@/components/ChipBox";
 import LevelGuesserStateDisplay from "./LevelGuesserStateDisplay";
 import LevelButtonGroup from "./LevelButtonGroup";
@@ -70,31 +69,34 @@ function LevelGuesserScreen() {
 
   return (
     <>
-      <TitleCard subTitle="Level Guesser" width={600} />
+      <Stack direction="column" spacing={2} sx={{ alignItems: "center" }}>
+        <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <Typography variant="h1" color="primary.main">
+            Digiguessr
+          </Typography>
+          <ChipBox>
+            <Stack
+              direction="row"
+              divider={
+                <Divider
+                  aria-hidden="true"
+                  orientation="vertical"
+                  sx={{ bgcolor: "black" }}
+                  flexItem
+                />
+              }
+              spacing={1}
+              sx={{ alignItems: "center" }}
+            >
+              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+                <EmojiEvents sx={{ color: "#d3af37" }} />
+                <Typography variant="body2">Score: {streak}</Typography>
+              </Stack>
 
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-        <ChipBox>
-          <Stack
-            direction="row"
-            divider={
-              <Divider
-                aria-hidden="true"
-                orientation="vertical"
-                sx={{ bgcolor: "black" }}
-                flexItem
-              />
-            }
-            spacing={1}
-            sx={{ alignItems: "center" }}
-          >
-            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-              <EmojiEvents sx={{ color: "#d3af37" }} />
-              <Typography variant="body2">Score: {streak}</Typography>
+              <Typography variant="body2">High: {highscore}</Typography>
             </Stack>
-
-            <Typography variant="body2">High: {highscore}</Typography>
-          </Stack>
-        </ChipBox>
+          </ChipBox>
+        </Stack>
 
         <ChipBox>
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
@@ -112,7 +114,7 @@ function LevelGuesserScreen() {
         <Typography variant="h3">
           {isLoading ? "Loading..." : digimon?.name}
         </Typography>
-        <DigimonImage src={digimon?.image?.href ?? undefined} />
+        <DigimonImage src={digimon?.image} />
 
         <Stack direction="row" spacing={4} sx={{ alignItems: "flex-end" }}>
           <LevelGuesserStateDisplay

@@ -1,3 +1,10 @@
 body {
   font-family: "Montserrat Variable", sans-serif;
 }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -7,19 +7,28 @@ import type {
   LevelInterface,
 } from "@/utils/digimonInterfaces";
 
+/* interface AssembledDigimon {
+  id: number;
+  name: string;
+  image: string;
+  levels: string[];
+  prevos: ShortDigimonInterface[];
+  evos: ShortDigimonInterface;
+} */
+
 function assembleDigimon(data: DigimonInterface) {
   const levelList: string[] = [];
-  data.levels?.map((levelObj: LevelInterface) => {
+  data.levels.map((levelObj: LevelInterface) => {
     levelList.push(levelObj.level);
   });
 
   return {
     id: data.id,
     name: data.name,
-    image: data.images ? data.images[0] ?? null : null,
+    image: data.images[0]?.href ?? undefined,
     levels: levelList,
-    prevos: data.priorEvolutions ?? [],
-    evos: data.nextEvolutions ?? [],
+    prevos: data.priorEvolutions,
+    evos: data.nextEvolutions,
   };
 }
 
@@ -30,7 +39,8 @@ function useDigimon(id?: number) {
     queryFn: async () => {
       const data = await fetchDigimon(digimonId);
       if (data.error) throw new Error(data.message);
-      return data;
+      const typedData = data as DigimonInterface;
+      return typedData;
     },
     throwOnError: true,
     retry: 0,

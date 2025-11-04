@@ -33,13 +33,13 @@ let customTheme = createTheme({
 
     h1: {
       fontSize: "2.4rem",
-      letterSpacing: "0.50rem",
+      letterSpacing: "-0.1rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h2: {
       fontSize: "2rem",
-      letterSpacing: "0.30rem",
+      letterSpacing: "-0.1rem",
       fontWeight: 600,
       textAlign: "center",
     },
