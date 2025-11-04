@@ -26,7 +26,7 @@ function LevelGuesserScreen() {
   const [results, setResults] = useState(DEFAULTRESULTS);
   const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
-  const { digimon, isLoading, getRandomDigimon } = useDigimon();
+  const { digimon, isLoading, getRandomDigimon } = useDigimon(375);
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
 
@@ -69,34 +69,41 @@ function LevelGuesserScreen() {
 
   return (
     <>
-      <Stack direction="column" spacing={2} sx={{ alignItems: "center" }}>
-        <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <Typography variant="h1" color="primary.main">
-            Digiguessr
-          </Typography>
-          <ChipBox>
-            <Stack
-              direction="row"
-              divider={
-                <Divider
-                  aria-hidden="true"
-                  orientation="vertical"
-                  sx={{ bgcolor: "black" }}
-                  flexItem
-                />
-              }
-              spacing={1}
-              sx={{ alignItems: "center" }}
-            >
-              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <EmojiEvents sx={{ color: "#d3af37" }} />
-                <Typography variant="body2">Score: {streak}</Typography>
-              </Stack>
-
-              <Typography variant="body2">High: {highscore}</Typography>
+      <Stack
+        direction="row"
+        useFlexGap
+        spacing={2}
+        sx={{
+          alignItems: "center",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h1" color="primary.main">
+          Digiguessr
+        </Typography>
+        <ChipBox>
+          <Stack
+            direction="row"
+            divider={
+              <Divider
+                aria-hidden="true"
+                orientation="vertical"
+                sx={{ bgcolor: "grey.500" }}
+                flexItem
+              />
+            }
+            spacing={1}
+            sx={{ alignItems: "center" }}
+          >
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <EmojiEvents sx={{ color: "#d3af37" }} />
+              <Typography variant="body2">Score: {streak}</Typography>
             </Stack>
-          </ChipBox>
-        </Stack>
+
+            <Typography variant="body2">High: {highscore}</Typography>
+          </Stack>
+        </ChipBox>
 
         <ChipBox>
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
@@ -111,7 +118,7 @@ function LevelGuesserScreen() {
       </Stack>
 
       <GameCard>
-        <Typography variant="h3">
+        <Typography variant="h2">
           {isLoading ? "Loading..." : digimon?.name}
         </Typography>
         <DigimonImage src={digimon?.image} />

@@ -23,12 +23,11 @@ let customTheme = createTheme({
   typography: {
     fontFamily: ["Montserrat Variable", "sans-serif"].join(","),
     body1: {
-      fontSize: "1.2rem",
+      fontSize: "1rem",
     },
 
     body2: {
-      fontSize: "1rem",
-      fontWeight: 500,
+      fontSize: "0.875rem",
     },
 
     h1: {
@@ -38,19 +37,14 @@ let customTheme = createTheme({
       textAlign: "center",
     },
     h2: {
-      fontSize: "2rem",
+      fontSize: "1.6rem",
       letterSpacing: "-0.1rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h3: {
-      fontSize: "1.6rem",
+      fontSize: "1.2rem",
       letterSpacing: "0.10rem",
-      fontWeight: 600,
-      textAlign: "center",
-    },
-    h4: {
-      fontSize: "1.4rem",
       fontWeight: 600,
       textAlign: "center",
     },
@@ -100,9 +94,6 @@ customTheme = createTheme(customTheme, {
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        html: {
-          height: "100%",
-        },
         body: {
           fontSize: "16px",
           lineHeight: 1.5,
@@ -124,7 +115,7 @@ customTheme = createTheme(customTheme, {
     MuiContainer: {
       styleOverrides: {
         root: {
-          height: "100%",
+          minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           gap: customTheme.spacing(2),

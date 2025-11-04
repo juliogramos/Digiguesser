@@ -9,9 +9,10 @@ const GameCard = styled(Card)<CardProps>(({ theme }) => ({
   padding: theme.spacing(1),
   paddingBottom: theme.spacing(2),
   maxHeight: 600,
+  maxWidth: 600,
   height: "100%",
+  width: "100%",
   [theme.breakpoints.down("sm")]: {
-    height: "fit-content",
     justifyContent: "space-evenly",
   },
 }));

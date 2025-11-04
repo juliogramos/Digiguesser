@@ -25,6 +25,7 @@ function DigimonIconButton({
           variant="square"
         />
       }
+      style={{ minWidth: "145px", paddingLeft: 8, paddingRight: 8 }}
       {...props}
     >
       {label}

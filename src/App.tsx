@@ -17,7 +17,7 @@ const Providers = ({ children }: ProviderProps) => {
     <ThemeProvider theme={customTheme}>
       <CssBaseline>
         <QueryClientProvider client={queryClient}>
-          <Container maxWidth="sm">
+          <Container>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
               {children}
             </ErrorBoundary>
