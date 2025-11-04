@@ -1,4 +1,10 @@
-import { Typography, Switch, Stack, Divider } from "@mui/material";
+import {
+  Typography,
+  Switch,
+  Stack,
+  Divider,
+  Link as MUILink,
+} from "@mui/material";
 import {
   type Level,
   LOADTIMES,
@@ -20,6 +26,7 @@ import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
 import { useState, useCallback } from "react";
 import { preload } from "react-dom";
+import DisclaimerDialog from "@/components/DisclaimerDialog";
 
 function LevelGuesserScreen() {
   const { gameState, setWinner, resetGameState } = useGameState();
@@ -29,6 +36,7 @@ function LevelGuesserScreen() {
   const { digimon, isLoading, getRandomDigimon } = useDigimon(375);
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
+  const [disclaimer, setDisclaimer] = useState(false);
 
   preload(imgTry, {
     as: "image",
@@ -89,7 +97,7 @@ function LevelGuesserScreen() {
               <Divider
                 aria-hidden="true"
                 orientation="vertical"
-                sx={{ bgcolor: "grey.500" }}
+                sx={{ bgcolor: "grey.400" }}
                 flexItem
               />
             }
@@ -112,7 +120,7 @@ function LevelGuesserScreen() {
               checked={altNaming}
               onChange={toggleAltNaming}
             />
-            <Typography variant="body2">Alt. naming</Typography>
+            <Typography variant="body2">Dub levels</Typography>
           </Stack>
         </ChipBox>
       </Stack>
@@ -148,6 +156,27 @@ function LevelGuesserScreen() {
           altNaming={altNaming}
         />
       </GameCard>
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: "center",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <MUILink
+          onClick={() => setDisclaimer(true)}
+          sx={{ cursor: "pointer", fontWeight: 500 }}
+          color="primary.main"
+        >
+          Disclaimer
+        </MUILink>
+      </Stack>
+      <DisclaimerDialog
+        open={disclaimer}
+        onClose={() => setDisclaimer(false)}
+      />
     </>
   );
 }

@@ -36,7 +36,6 @@ function DigimonImage({ src }: DigimonImageProps) {
         },
         width: "100vw",
         height: "100vh",
-        backgroundColor: "grey.500",
       }}
     >
       <Box
@@ -47,6 +46,7 @@ function DigimonImage({ src }: DigimonImageProps) {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "grey.400",
         }}
       >
         <CircularProgress size="25%" />
