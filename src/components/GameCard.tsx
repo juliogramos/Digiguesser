@@ -8,9 +8,9 @@ const GameCard = styled(Card)<CardProps>(({ theme }) => ({
   gap: theme.spacing(2),
   padding: theme.spacing(1),
   paddingBottom: theme.spacing(2),
-  maxHeight: 550,
+  maxHeight: 600,
   maxWidth: 600,
-  height: "100vh",
+  height: "100%",
   width: "100%",
   [theme.breakpoints.down("sm")]: {
     justifyContent: "space-evenly",
