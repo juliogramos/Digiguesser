@@ -19,9 +19,10 @@ _Digimon and related media belong to Bandai._
 - [x] Add streak (local storage)
 - [x] Error Boundary
 - [x] Alt naming
-- [ ] Placeholder image for DigimonImage in case there's no source
 - [x] Disclaimer modal
-- [ ] Define palette, dark theme
+- [x] Define palette, dark theme
+- [ ] Custom hook for theme switching
+- [ ] Custom component for footer
 - [ ] Main menu
 - [ ] Daily mode
 - [ ] **Deploy**

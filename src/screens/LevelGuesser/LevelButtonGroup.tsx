@@ -42,7 +42,6 @@ function LevelButtonGroup({
         return (
           <DigimonIconButton
             variant="contained"
-            color="secondary"
             label={!altNaming ? value.LABEL : value.ALT}
             imageSrc={value.IMG}
             aria-label={!altNaming ? value.LABEL : value.ALT}

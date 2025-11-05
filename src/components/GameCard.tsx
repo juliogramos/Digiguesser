@@ -15,6 +15,9 @@ const GameCard = styled(Card)<CardProps>(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     justifyContent: "space-evenly",
   },
+  backgroundColor: theme.palette.containerBackground.main,
+  border: `1px solid ${theme.palette.border.main}`,
+  borderRadius: theme.spacing(1),
 }));
 
 export default GameCard;

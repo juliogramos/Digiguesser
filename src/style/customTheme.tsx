@@ -1,25 +1,86 @@
 import { createTheme } from "@mui/material";
 import bgImg from "@/assets/bg.png";
 
+const COLORS = {
+  PRIMARY: {
+    LIGHT: "hsl(221 49% 33%)",
+    DARK: "hsl(220 78% 76%)",
+  },
+  SUCCESS: {
+    LIGHT: "hsl(149 70% 34%)",
+    DARK: "hsl(147 24% 57%)",
+  },
+  ERROR: {
+    LIGHT: "hsl(9 58% 41%)",
+    DARK: "hsl(9 37% 65%)",
+  },
+  BACKGROUND: {
+    LIGHT: "hsl(220, 89%, 92%)",
+    DARK: "hsl(231 91% 3%)",
+  },
+  CONTAINERBACKGROUND: {
+    LIGHT: "hsl(220, 100%, 97%)",
+    DARK: "hsl(223 70% 6%)",
+  },
+  BORDER: {
+    LIGHT: "hsl(220 39% 66%)",
+    DARK: "hsl(221 35% 32%)",
+  },
+};
+
 let customTheme = createTheme({
   spacing: 8,
-  palette: {
-    primary: {
-      main: "#1251d0",
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: COLORS.PRIMARY.LIGHT,
+          dark: COLORS.CONTAINERBACKGROUND.DARK,
+          contrastText: COLORS.CONTAINERBACKGROUND.LIGHT,
+        },
+        success: {
+          main: COLORS.SUCCESS.LIGHT,
+        },
+        error: {
+          main: COLORS.ERROR.LIGHT,
+        },
+        background: {
+          default: COLORS.BACKGROUND.LIGHT,
+        },
+        containerBackground: {
+          main: COLORS.CONTAINERBACKGROUND.LIGHT,
+        },
+        border: {
+          main: COLORS.BORDER.LIGHT,
+        },
+      },
     },
-    secondary: {
-      main: "#2e74c9",
-    },
-    success: {
-      main: "#009900",
-    },
-    error: {
-      main: "#990000",
-    },
-    background: {
-      default: "#d3dbff",
+    dark: {
+      palette: {
+        primary: {
+          main: COLORS.PRIMARY.DARK,
+          dark: COLORS.CONTAINERBACKGROUND.LIGHT,
+          contrastText: COLORS.CONTAINERBACKGROUND.DARK,
+        },
+        success: {
+          main: COLORS.SUCCESS.DARK,
+        },
+        error: {
+          main: COLORS.ERROR.DARK,
+        },
+        background: {
+          default: COLORS.BACKGROUND.DARK,
+        },
+        containerBackground: {
+          main: COLORS.CONTAINERBACKGROUND.DARK,
+        },
+        border: {
+          main: COLORS.BORDER.DARK,
+        },
+      },
     },
   },
+
   typography: {
     fontFamily: ["Montserrat Variable", "sans-serif"].join(","),
     body1: {
@@ -98,7 +159,8 @@ customTheme = createTheme(customTheme, {
           fontSize: "16px",
           lineHeight: 1.5,
           height: "100%",
-          background: `${customTheme.palette.background.default} url(${bgImg}) repeat left top`,
+          backgroundColor: `${customTheme.palette.background}`,
+          backgroundImage: `url(${bgImg})`,
           backgroundSize: `${2640 / 1.375}px auto`,
           "@keyframes bgAnim": {
             "0%": {

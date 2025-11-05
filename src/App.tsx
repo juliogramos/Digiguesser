@@ -14,7 +14,7 @@ interface ProviderProps {
 
 const Providers = ({ children }: ProviderProps) => {
   return (
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme} defaultMode="light">
       <CssBaseline>
         <QueryClientProvider client={queryClient}>
           <Container>

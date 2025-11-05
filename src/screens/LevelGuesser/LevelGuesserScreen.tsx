@@ -4,6 +4,8 @@ import {
   Stack,
   Divider,
   Link as MUILink,
+  FormControlLabel,
+  useColorScheme,
 } from "@mui/material";
 import {
   type Level,
@@ -37,6 +39,7 @@ function LevelGuesserScreen() {
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
   const [disclaimer, setDisclaimer] = useState(false);
+  const { mode, setMode } = useColorScheme();
 
   preload(imgTry, {
     as: "image",
@@ -97,7 +100,7 @@ function LevelGuesserScreen() {
               <Divider
                 aria-hidden="true"
                 orientation="vertical"
-                sx={{ bgcolor: "grey.400" }}
+                sx={{ bgcolor: "border.main" }}
                 flexItem
               />
             }
@@ -115,12 +118,16 @@ function LevelGuesserScreen() {
 
         <ChipBox>
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
-            <Switch
-              size="small"
-              checked={altNaming}
-              onChange={toggleAltNaming}
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={altNaming}
+                  onChange={toggleAltNaming}
+                />
+              }
+              label={<Typography variant="body2">Dub levels</Typography>}
             />
-            <Typography variant="body2">Dub levels</Typography>
           </Stack>
         </ChipBox>
       </Stack>
@@ -144,7 +151,6 @@ function LevelGuesserScreen() {
               imageSrc={imgTry}
               label="Try Again"
               variant="contained"
-              color="secondary"
               onClick={newGame}
             />
           ) : null}
@@ -159,12 +165,32 @@ function LevelGuesserScreen() {
       <Stack
         direction="row"
         spacing={2}
+        divider={
+          <Divider
+            aria-hidden="true"
+            orientation="vertical"
+            sx={{ bgcolor: "border.main" }}
+            flexItem
+          />
+        }
         sx={{
           alignItems: "center",
           flexWrap: "wrap",
           justifyContent: "center",
         }}
       >
+        <FormControlLabel
+          control={
+            <Switch
+              size="small"
+              checked={mode === "dark"}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                event.target.checked ? setMode("dark") : setMode("light")
+              }
+            />
+          }
+          label={<Typography variant="body2">Dark Mode</Typography>}
+        />
         <MUILink
           onClick={() => setDisclaimer(true)}
           sx={{ cursor: "pointer", fontWeight: 500 }}

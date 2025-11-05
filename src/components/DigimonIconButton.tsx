@@ -13,6 +13,7 @@ function DigimonIconButton({
 }: DigimonIconButtonProps & ButtonProps) {
   return (
     <Button
+      color="primary"
       aria-label={label}
       startIcon={
         <Avatar

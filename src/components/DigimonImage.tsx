@@ -1,4 +1,4 @@
-import { CircularProgress, Box } from "@mui/material";
+import { CircularProgress, Box, useTheme } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { DIGIMONIMAGESIZE } from "@/utils/constants";
 
@@ -9,6 +9,7 @@ interface DigimonImageProps {
 function DigimonImage({ src }: DigimonImageProps) {
   const [loading, setLoading] = useState(true);
   const imageRef = useRef<HTMLImageElement>(null);
+  const theme = useTheme();
 
   // During testing this wasn't actually necessary, but I still want to make
   //  sure that cached images still display properly
@@ -59,6 +60,8 @@ function DigimonImage({ src }: DigimonImageProps) {
           style={{
             width: "100%",
             height: "100%",
+            border: `1px solid ${theme.palette.border.main}`,
+            borderRadius: theme.spacing(1),
           }}
           onLoad={() => setLoading(false)}
         />
