@@ -21,7 +21,8 @@ _Digimon and related media belong to Bandai._
 - [x] Alt naming
 - [x] Disclaimer modal
 - [x] Define palette, dark theme
-- [ ] Custom hook for theme switching
+- [x] Fix win/loss heading not being colored
+- [x] Custom component for theme switching
 - [ ] Custom component for footer
 - [ ] Main menu
 - [ ] Daily mode

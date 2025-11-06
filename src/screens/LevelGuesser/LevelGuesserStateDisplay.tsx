@@ -28,7 +28,7 @@ function LevelGuesserStateDisplay({
     case "loss":
       return (
         <Box sx={{ textAlign: "center" }}>
-          <Typography color="fail.main" variant="h3">
+          <Typography color="error.main" variant="h3">
             You Lost!
           </Typography>
           <Typography>Final Score: {streak}</Typography>

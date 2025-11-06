@@ -5,7 +5,6 @@ import {
   Divider,
   Link as MUILink,
   FormControlLabel,
-  useColorScheme,
 } from "@mui/material";
 import {
   type Level,
@@ -29,6 +28,7 @@ import { EmojiEvents } from "@mui/icons-material";
 import { useState, useCallback } from "react";
 import { preload } from "react-dom";
 import DisclaimerDialog from "@/components/DisclaimerDialog";
+import DarkModeSwitch from "@/components/DarkModeSwitch";
 
 function LevelGuesserScreen() {
   const { gameState, setWinner, resetGameState } = useGameState();
@@ -39,7 +39,6 @@ function LevelGuesserScreen() {
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
   const [disclaimer, setDisclaimer] = useState(false);
-  const { mode, setMode } = useColorScheme();
 
   preload(imgTry, {
     as: "image",
@@ -91,7 +90,7 @@ function LevelGuesserScreen() {
         }}
       >
         <Typography variant="h1" color="primary.main">
-          Digiguessr
+          DigiGuessr
         </Typography>
         <ChipBox>
           <Stack
@@ -162,43 +161,43 @@ function LevelGuesserScreen() {
           altNaming={altNaming}
         />
       </GameCard>
-      <Stack
-        direction="row"
-        spacing={2}
-        divider={
-          <Divider
-            aria-hidden="true"
-            orientation="vertical"
-            sx={{ bgcolor: "border.main" }}
-            flexItem
-          />
-        }
-        sx={{
-          alignItems: "center",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <FormControlLabel
-          control={
-            <Switch
-              size="small"
-              checked={mode === "dark"}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                event.target.checked ? setMode("dark") : setMode("light")
-              }
+      <ChipBox>
+        <Stack
+          direction="row"
+          spacing={2}
+          divider={
+            <Divider
+              aria-hidden="true"
+              orientation="vertical"
+              sx={{ bgcolor: "border.main" }}
+              flexItem
             />
           }
-          label={<Typography variant="body2">Dark Mode</Typography>}
-        />
-        <MUILink
-          onClick={() => setDisclaimer(true)}
-          sx={{ cursor: "pointer", fontWeight: 500 }}
-          color="primary.main"
+          sx={{
+            alignItems: "center",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
-          Disclaimer
-        </MUILink>
-      </Stack>
+          <DarkModeSwitch />
+          <MUILink
+            variant="body2"
+            onClick={() => setDisclaimer(true)}
+            sx={{ cursor: "pointer" }}
+            color="primary.main"
+          >
+            Disclaimer
+          </MUILink>
+          <MUILink
+            variant="body2"
+            href="https://github.com/juliogramos/Digiguessr"
+            sx={{ cursor: "pointer", paddingRight: 1 }}
+            color="primary.main"
+          >
+            Github
+          </MUILink>
+        </Stack>
+      </ChipBox>
       <DisclaimerDialog
         open={disclaimer}
         onClose={() => setDisclaimer(false)}

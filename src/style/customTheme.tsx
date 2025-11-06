@@ -85,27 +85,28 @@ let customTheme = createTheme({
     fontFamily: ["Montserrat Variable", "sans-serif"].join(","),
     body1: {
       fontSize: "1rem",
+      fontWeight: 400,
     },
 
     body2: {
       fontSize: "0.875rem",
+      fontWeight: 400,
     },
 
     h1: {
       fontSize: "2.4rem",
-      letterSpacing: "-0.1rem",
-      fontWeight: 600,
+      letterSpacing: "-0.15rem",
+      fontWeight: 700,
       textAlign: "center",
     },
     h2: {
       fontSize: "1.6rem",
-      letterSpacing: "-0.1rem",
+      letterSpacing: "-0.05rem",
       fontWeight: 600,
       textAlign: "center",
     },
     h3: {
       fontSize: "1.2rem",
-      letterSpacing: "0.10rem",
       fontWeight: 600,
       textAlign: "center",
     },
@@ -161,6 +162,7 @@ customTheme = createTheme(customTheme, {
           height: "100%",
           backgroundColor: `${customTheme.palette.background}`,
           backgroundImage: `url(${bgImg})`,
+          backgroundBlendMode: "luminosity",
           backgroundSize: `${2640 / 1.375}px auto`,
           "@keyframes bgAnim": {
             "0%": {
