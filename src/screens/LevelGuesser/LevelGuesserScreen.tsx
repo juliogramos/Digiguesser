@@ -3,7 +3,6 @@ import {
   Switch,
   Stack,
   Divider,
-  Link as MUILink,
   FormControlLabel,
 } from "@mui/material";
 import {
@@ -27,18 +26,16 @@ import imgTry from "@/assets/button_try.webp";
 import { EmojiEvents } from "@mui/icons-material";
 import { useState, useCallback } from "react";
 import { preload } from "react-dom";
-import DisclaimerDialog from "@/components/DisclaimerDialog";
-import DarkModeSwitch from "@/components/DarkModeSwitch";
+import Footer from "@/components/Footer";
 
 function LevelGuesserScreen() {
   const { gameState, setWinner, resetGameState } = useGameState();
   const [results, setResults] = useState(DEFAULTRESULTS);
   const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
-  const { digimon, isLoading, getRandomDigimon } = useDigimon(375);
+  const { digimon, isLoading, getRandomDigimon } = useDigimon();
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
-  const [disclaimer, setDisclaimer] = useState(false);
 
   preload(imgTry, {
     as: "image",
@@ -161,47 +158,7 @@ function LevelGuesserScreen() {
           altNaming={altNaming}
         />
       </GameCard>
-      <ChipBox>
-        <Stack
-          direction="row"
-          spacing={2}
-          divider={
-            <Divider
-              aria-hidden="true"
-              orientation="vertical"
-              sx={{ bgcolor: "border.main" }}
-              flexItem
-            />
-          }
-          sx={{
-            alignItems: "center",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          <DarkModeSwitch />
-          <MUILink
-            variant="body2"
-            onClick={() => setDisclaimer(true)}
-            sx={{ cursor: "pointer" }}
-            color="primary.main"
-          >
-            Disclaimer
-          </MUILink>
-          <MUILink
-            variant="body2"
-            href="https://github.com/juliogramos/Digiguessr"
-            sx={{ cursor: "pointer", paddingRight: 1 }}
-            color="primary.main"
-          >
-            Github
-          </MUILink>
-        </Stack>
-      </ChipBox>
-      <DisclaimerDialog
-        open={disclaimer}
-        onClose={() => setDisclaimer(false)}
-      />
+      <Footer />
     </>
   );
 }

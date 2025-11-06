@@ -1,14 +1,16 @@
 # Digiguesser
 
+A Wordle/Foodguesser-type browser game themed after Digimon.
+
 Project made with React and Typescript.
 
-Layout inspired by the [Digimon Encyclopedia](https://digimon.net/reference_en/). Image assets taken from there.
+## Disclaimer
 
-A Wordle/Foodguesser type browser game themed after Digimon.
+Digimon and related media (including all Digimon pictures used on this site) are registered trademarks of Bandai. DigiGuessr is not affiliated with nor claims ownership to material produced by Bandai. DigiGuessr does not profit in any way.
 
-Queries from [DAPI](https://digi-api.com/).
+This site utilizes the free (unofficial) Digimon API [DAPI](https://digi-api.com/) which uses data from official and fan-based sources.
 
-_Digimon and related media belong to Bandai._
+This sites favicon and background are taken from the official [Digimon Encyclopedia](https://digimon.net/reference_en/) website.
 
 ## Todo
 

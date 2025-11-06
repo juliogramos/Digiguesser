@@ -39,7 +39,6 @@ function ErrorFallback({ error }: ErrorFallbackProps) {
         imageSrc={imgTry}
         label="Try Again"
         variant="contained"
-        color="secondary"
         onClick={() => window.location.reload()}
       />
     </GameCard>
