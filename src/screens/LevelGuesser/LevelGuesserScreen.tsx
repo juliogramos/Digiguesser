@@ -86,10 +86,16 @@ function LevelGuesserScreen() {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h1" color="primary.main">
+        <Typography
+          variant="h1"
+          color="primary.main"
+          sx={(theme) => ({
+            textShadow: `2px 2px 0 ${theme.palette.border.main}, -2px 2px 0 ${theme.palette.border.main}, -2px -2px 0 ${theme.palette.border.main}, 2px -2px 0 ${theme.palette.border.main}`,
+          })}
+        >
           DigiGuessr
         </Typography>
-        <ChipBox>
+        <ChipBox elevation={6}>
           <Stack
             direction="row"
             divider={
@@ -112,7 +118,7 @@ function LevelGuesserScreen() {
           </Stack>
         </ChipBox>
 
-        <ChipBox>
+        <ChipBox elevation={6}>
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
             <FormControlLabel
               control={
@@ -128,7 +134,7 @@ function LevelGuesserScreen() {
         </ChipBox>
       </Stack>
 
-      <GameCard>
+      <GameCard elevation={6}>
         <Typography variant="h2">
           {isLoading ? "Loading..." : digimon?.name}
         </Typography>

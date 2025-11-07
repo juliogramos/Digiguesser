@@ -95,7 +95,7 @@ let customTheme = createTheme({
 
     h1: {
       fontSize: "2.4rem",
-      letterSpacing: "-0.15rem",
+      letterSpacing: "-0.1rem",
       fontWeight: 700,
       textAlign: "center",
     },

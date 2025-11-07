@@ -8,7 +8,7 @@ function Footer() {
   const [disclaimer, setDisclaimer] = useState(false);
 
   return (
-    <ChipBox>
+    <ChipBox elevation={6}>
       <Stack
         direction="row"
         spacing={2}

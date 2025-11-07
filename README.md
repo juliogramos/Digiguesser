@@ -12,7 +12,13 @@ This site utilizes the free (unofficial) Digimon API [DAPI](https://digi-api.com
 
 This sites favicon and background are taken from the official [Digimon Encyclopedia](https://digimon.net/reference_en/) website.
 
-## Todo
+## Future Feature Ideas
+
+- Daily mode: Guess the level of 4 predetermined digimon per day.
+- Field Guesser: Guess what fields a random digimon belongs to (+ daily mode)
+- Evolution Guesser: Name X number of prior/next evolutions of a random digimon
+
+## Initial Deploy Todo
 
 - [x] Put Loader in its own file
 - [x] Import styles from [Digimon Search](https://github.com/juliogramos/Digimon-Search)
@@ -25,17 +31,6 @@ This sites favicon and background are taken from the official [Digimon Encyclope
 - [x] Define palette, dark theme
 - [x] Fix win/loss heading not being colored
 - [x] Custom component for theme switching
-- [ ] Custom component for footer
-- [ ] Main menu
-- [ ] Daily mode
+- [x] Custom component for footer
+- [ ] Rules modal
 - [ ] **Deploy**
-
-## Typescript Migration
-
-- [x] utils
-- [x] assets
-- [x] style
-- [x] hooks
-- [x] components
-- [x] CHANGE COMPONENTS TO STYLED
-- [x] screens

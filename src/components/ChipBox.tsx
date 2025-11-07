@@ -1,6 +1,6 @@
-import { Box, styled, type BoxProps } from "@mui/material";
+import { Paper, styled, type PaperProps } from "@mui/material";
 
-const ChipBox = styled(Box)<BoxProps>(({ theme }) => ({
+const ChipBox = styled(Paper)<PaperProps>(({ theme }) => ({
   backgroundColor: theme.palette.containerBackground.main,
   border: `1px solid ${theme.palette.border.main}`,
   borderRadius: 16,
