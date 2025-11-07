@@ -4,6 +4,8 @@ A Wordle/Foodguesser-type browser game themed after Digimon.
 
 Project made with React and Typescript.
 
+[Play here!](https://digiguessr.vercel.app/)
+
 ## Disclaimer
 
 Digimon and related media (including all Digimon pictures used on this site) are registered trademarks of Bandai. DigiGuessr is not affiliated with nor claims ownership to material produced by Bandai. DigiGuessr does not profit in any way.
@@ -33,4 +35,4 @@ This sites favicon and background are taken from the official [Digimon Encyclope
 - [x] Custom component for theme switching
 - [x] Custom component for footer
 - [x] Rules modal
-- [ ] **Deploy**
+- [x] **Deploy**
