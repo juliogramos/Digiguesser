@@ -35,7 +35,7 @@ function LevelGuesserScreen() {
   const [results, setResults] = useState(DEFAULTRESULTS);
   const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
-  const { digimon, isLoading, getRandomDigimon } = useDigimon(375);
+  const { digimon, isLoading, getRandomDigimon } = useDigimon();
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
   const [rules, setRules] = useState(false);
