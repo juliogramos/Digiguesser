@@ -32,5 +32,5 @@ This sites favicon and background are taken from the official [Digimon Encyclope
 - [x] Fix win/loss heading not being colored
 - [x] Custom component for theme switching
 - [x] Custom component for footer
-- [ ] Rules modal
+- [x] Rules modal
 - [ ] **Deploy**

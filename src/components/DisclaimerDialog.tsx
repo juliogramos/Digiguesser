@@ -14,7 +14,7 @@ interface DisclaimerDialogProps {
 
 function DisclaimerDialog({ open, onClose }: DisclaimerDialogProps) {
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} scroll="paper">
       <Stack direction="column" spacing={2} sx={{ padding: 2 }}>
         <DialogTitle style={{ padding: 0 }}>Disclaimer</DialogTitle>
         <Typography>

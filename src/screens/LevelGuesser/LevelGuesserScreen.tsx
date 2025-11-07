@@ -4,6 +4,7 @@ import {
   Stack,
   Divider,
   FormControlLabel,
+  IconButton,
 } from "@mui/material";
 import {
   type Level,
@@ -23,19 +24,21 @@ import useLocalStorageSwitch from "@/hooks/useLocalStorageSwitch";
 import useGameState from "@/hooks/useGameState";
 import useStreak from "@/hooks/useStreak";
 import imgTry from "@/assets/button_try.webp";
-import { EmojiEvents } from "@mui/icons-material";
+import { EmojiEvents, HelpOutline } from "@mui/icons-material";
 import { useState, useCallback } from "react";
 import { preload } from "react-dom";
 import Footer from "@/components/Footer";
+import LevelGuesserRulesDialog from "./LevelGuesserRulesDialog";
 
 function LevelGuesserScreen() {
   const { gameState, setWinner, resetGameState } = useGameState();
   const [results, setResults] = useState(DEFAULTRESULTS);
   const clearResults = useCallback(() => setResults(DEFAULTRESULTS), []);
   const { streak, highscore, increaseStreak, resetStreak } = useStreak();
-  const { digimon, isLoading, getRandomDigimon } = useDigimon();
+  const { digimon, isLoading, getRandomDigimon } = useDigimon(375);
   const { state: altNaming, toggleState: toggleAltNaming } =
     useLocalStorageSwitch("alt-naming");
+  const [rules, setRules] = useState(false);
 
   preload(imgTry, {
     as: "image",
@@ -155,7 +158,14 @@ function LevelGuesserScreen() {
               variant="contained"
               onClick={newGame}
             />
-          ) : null}
+          ) : (
+            <Stack direction="row" sx={{ alignItems: "center" }}>
+              <Typography variant="h3">Guess the level!</Typography>
+              <IconButton aria-label="rules" onClick={() => setRules(true)}>
+                <HelpOutline color="primary" />
+              </IconButton>
+            </Stack>
+          )}
         </Stack>
         <LevelButtonGroup
           onClick={levelGuesserLogic}
@@ -165,6 +175,7 @@ function LevelGuesserScreen() {
         />
       </GameCard>
       <Footer />
+      <LevelGuesserRulesDialog open={rules} onClose={() => setRules(false)} />
     </>
   );
 }
